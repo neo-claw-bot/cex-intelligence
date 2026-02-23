@@ -1,0 +1,76 @@
+{
+  "summary": "Operations largely normal. KuCoin faces Austrian FMA regulatory ban on new EU business due to AML compliance gaps. Binance reports potential exec security incident in France. Minor deposit/withdrawal complaints on KuCoin and Coinbase. Bitget resumes NKN-ETH withdrawals.",
+  "alerts": [
+    {
+      "exchange": "KuCoin",
+      "severity": "high",
+      "title": "FMA Austria bans new business on KuCoin EU",
+      "description": "Administrative order prohibits new customers and products due to unstaffed AML/Sanctions officers. Temporary, not final; no withdrawal impact noted."
+    },
+    {
+      "exchange": "Binance",
+      "severity": "medium",
+      "title": "Reported home invasion attempt on Binance France executive",
+      "description": "Armed raid on exec home in France mentioned in security briefings; potential targeting of crypto personnel."
+    },
+    {
+      "exchange": "KuCoin",
+      "severity": "medium",
+      "title": "User complaints on stuck deposits",
+      "description": "Reports of XTM, VRA, Torum deposits pending months; maintenance cited."
+    },
+    {
+      "exchange": "Coinbase",
+      "severity": "low",
+      "title": "Solana send/receive issues and scam flagging",
+      "description": "Users report outage preventing Solana transfers; flagging Ledger withdrawals as scams."
+    },
+    {
+      "exchange": "Bitget",
+      "severity": "low",
+      "title": "NKN-ETH withdrawals resumed",
+      "description": "Service reopened after prior suspension."
+    }
+  ],
+  "exchange_status": {
+    "Binance": {
+      "status": "warning",
+      "notes": "Reported exec security incident in France"
+    },
+    "OKX": {
+      "status": "normal",
+      "notes": ""
+    },
+    "Coinbase": {
+      "status": "warning",
+      "notes": "Solana transfer complaints; scam flagging"
+    },
+    "Bybit": {
+      "status": "normal",
+      "notes": ""
+    },
+    "Bitget": {
+      "status": "normal",
+      "notes": "Recent withdrawal resumption"
+    },
+    "Kraken": {
+      "status": "normal",
+      "notes": ""
+    },
+    "KuCoin": {
+      "status": "warning",
+      "notes": "EU regulatory restriction; deposit complaints"
+    }
+  },
+  "fintelegram_highlights": [
+    "KuCoin EU prohibited from new customers by FMA Austria over AML/sanctions staffing deficiencies"
+  ],
+  "sources_checked": [
+    "x_keyword_search",
+    "x_semantic_search",
+    "web_search",
+    "browse_page"
+  ],
+  "date": "2026-02-24",
+  "collected_at": "2026-02-24T19:09:26.023688"
+}
