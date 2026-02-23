@@ -222,6 +222,112 @@ def api_dashboard():
     analysis = analyze_30_days()
     return jsonify(analysis)
 
+
+def get_exchange_history(exchange_name):
+    """获取指定交易所的所有历史数据"""
+    dates = get_available_dates()
+    history = []
+    stats = {
+        "total_alerts": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "first_seen": None,
+        "last_seen": None
+    }
+    
+    for date in dates:
+        data = load_intel(date)
+        if not data:
+            continue
+            
+        # 检查该交易所的警报
+        if data.get("alerts"):
+            for alert in data["alerts"]:
+                if alert.get("exchange", "").lower() == exchange_name.lower():
+                    alert_copy = alert.copy()
+                    alert_copy["date"] = date
+                    history.append(alert_copy)
+                    
+                    # 统计
+                    stats["total_alerts"] += 1
+                    severity = alert.get("severity", "low")
+                    if severity in stats:
+                        stats[severity] += 1
+                    
+                    # 时间范围
+                    if stats["first_seen"] is None:
+                        stats["first_seen"] = date
+                    stats["last_seen"] = date
+        
+        # 检查该交易所的状态记录
+        if data.get("exchange_status") and exchange_name in data.get("exchange_status", {}):
+            status_info = data["exchange_status"][exchange_name]
+            if status_info.get("notes"):
+                history.append({
+                    "date": date,
+                    "exchange": exchange_name,
+                    "title": "状态更新",
+                    "description": status_info["notes"],
+                    "severity": "low",
+                    "category": "status",
+                    "status": status_info.get("status", "normal")
+                })
+    
+    # 按日期排序（最新的在前）
+    history.sort(key=lambda x: x.get("date", ""), reverse=True)
+    
+    # 计算安全评分
+    score = 100
+    score -= stats["critical"] * 25
+    score -= stats["high"] * 15
+    score -= stats["medium"] * 5
+    score -= stats["low"] * 2
+    stats["score"] = max(0, score)
+    
+    # 确定总体状态
+    if stats["critical"] > 0:
+        stats["overall_status"] = "critical"
+    elif stats["high"] > 0:
+        stats["overall_status"] = "warning"
+    else:
+        stats["overall_status"] = "normal"
+    
+    return history, stats
+
+
+@app.route("/exchange/<exchange_name>")
+def exchange_detail(exchange_name):
+    """交易所详情页 - 显示该交易所的所有历史事件"""
+    history, stats = get_exchange_history(exchange_name)
+    
+    # 获取该交易所的最新状态
+    today = datetime.now().strftime("%Y-%m-%d")
+    today_data = load_intel(today)
+    current_status = None
+    
+    if today_data and today_data.get("exchange_status"):
+        current_status = today_data["exchange_status"].get(exchange_name)
+    
+    # 如果没有今日数据，尝试获取最近的状态
+    if not current_status:
+        for i in range(1, 7):
+            date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+            data = load_intel(date)
+            if data and data.get("exchange_status"):
+                current_status = data["exchange_status"].get(exchange_name)
+                if current_status:
+                    break
+    
+    return render_template("exchange.html",
+                          exchange_name=exchange_name,
+                          history=history,
+                          stats=stats,
+                          current_status=current_status,
+                          get_severity_color=get_severity_color,
+                          get_status_emoji=get_status_emoji)
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)

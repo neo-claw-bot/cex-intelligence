@@ -103,7 +103,9 @@
                                 <span class="px-2 py-0.5 text-xs rounded {{ get_severity_color(alert.severity) }} text-white font-medium">
                                     {{ alert.severity|upper }}
                                 </span>
-                                <span class="text-blue-400 font-medium">{{ alert.exchange }}</span>
+                                <a href="/exchange/{{ alert.exchange }}" class="text-blue-400 font-medium hover:underline">
+                                    {{ alert.exchange }}
+                                </a>
                             </div>
                             <h3 class="font-semibold mb-1">{{ alert.title }}</h3>
                             <p class="text-sm text-gray-400">{{ alert.description }}</p>
@@ -124,7 +126,7 @@
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {% for exchange, info in data.exchange_status.items() %}
-                <div class="bg-slate-800/50 rounded-lg p-4 card-hover">
+                <a href="/exchange/{{ exchange }}" class="block bg-slate-800/50 rounded-lg p-4 card-hover">
                     <div class="flex items-center justify-between mb-2">
                         <span class="font-semibold">{{ exchange }}</span>
                         <span class="text-xl">{{ get_status_emoji(info.status) }}</span>
@@ -134,7 +136,7 @@
                     {% else %}
                     <p class="text-sm text-gray-500">运营正常</p>
                     {% endif %}
-                </div>
+                </a>
                 {% endfor %}
             </div>
         </div>
