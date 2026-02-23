@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-DATA_DIR = Path(__file__).parent.parent / "data" / "intelligence"
+DATA_DIR = Path(__file__).parent / "data" / "intelligence"
 
 def load_intel(date_str):
     """加载指定日期的情报数据"""

@@ -1,0 +1,19 @@
+## 🎯 CEX 情报每日简报
+📅 2026-02-22 | ⏰ 2026-02-22T15:38
+
+### 📊 中风险关注
+🟡 **KuCoin**: FMA Regulatory Action on KuCoin EU
+
+### 📊 交易所状态
+🟢 **Binance**: 正常
+🟢 **OKX**: 正常
+🟢 **Coinbase**: 正常
+🟢 **Bybit**: 正常
+🟢 **Bitget**: 正常
+🟢 **Kraken**: 正常
+🟡 **KuCoin**: FMA AML action; deposit complaints.
+
+### 🔍 FinTelegram (1 条)
+• FMA bans KuCoin EU new business for AML/sanctions staffing failures (Feb 20).
+
+**💡 摘要**: No major security incidents, hacks, outages, or withdrawal suspensions reported in the last 48 hours across monitored exchanges. KuCoin EU faces regulatory action from Austria's FMA for AML compliance...
