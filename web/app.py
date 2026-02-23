@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import json
 import os
+import pytz
 
 app = Flask(__name__)
 
@@ -19,8 +20,10 @@ def load_intel(date_str):
 def get_available_dates():
     """获取可用的日期列表（最近30天）"""
     dates = []
+    tz = pytz.timezone('Asia/Shanghai')
+    now = datetime.now(tz)
     for i in range(30):
-        date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+        date = (now - timedelta(days=i)).strftime("%Y-%m-%d")
         if (DATA_DIR / f"{date}.json").exists():
             dates.append(date)
     return dates
@@ -122,13 +125,14 @@ def analyze_30_days():
 @app.route("/")
 def index():
     """首页 - 显示最新简报"""
-    today = datetime.now().strftime("%Y-%m-%d")
+    tz = pytz.timezone('Asia/Shanghai')
+    today = datetime.now(tz).strftime("%Y-%m-%d")
     data = load_intel(today)
     
     if not data:
         # 尝试加载最近可用的数据
         for i in range(1, 7):
-            date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+            date = (datetime.now(tz) - timedelta(days=i)).strftime("%Y-%m-%d")
             data = load_intel(date)
             if data:
                 break
@@ -148,12 +152,13 @@ def index():
 def dashboard():
     """Dashboard - 整体状态显示"""
     # 获取今日数据
-    today = datetime.now().strftime("%Y-%m-%d")
+    tz = pytz.timezone('Asia/Shanghai')
+    today = datetime.now(tz).strftime("%Y-%m-%d")
     today_data = load_intel(today)
     
     if not today_data:
         for i in range(1, 7):
-            date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+            date = (datetime.now(tz) - timedelta(days=i)).strftime("%Y-%m-%d")
             today_data = load_intel(date)
             if today_data:
                 break
@@ -189,12 +194,13 @@ def date_view(date_str):
 @app.route("/api/latest")
 def api_latest():
     """API: 获取最新简报数据"""
-    today = datetime.now().strftime("%Y-%m-%d")
+    tz = pytz.timezone('Asia/Shanghai')
+    today = datetime.now(tz).strftime("%Y-%m-%d")
     data = load_intel(today)
     
     if not data:
         for i in range(1, 7):
-            date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+            date = (datetime.now(tz) - timedelta(days=i)).strftime("%Y-%m-%d")
             data = load_intel(date)
             if data:
                 break
@@ -304,7 +310,8 @@ def exchange_detail(exchange_name):
     history, stats = get_exchange_history(exchange_name)
     
     # 获取该交易所的最新状态
-    today = datetime.now().strftime("%Y-%m-%d")
+    tz = pytz.timezone('Asia/Shanghai')
+    today = datetime.now(tz).strftime("%Y-%m-%d")
     today_data = load_intel(today)
     current_status = None
     
@@ -314,7 +321,7 @@ def exchange_detail(exchange_name):
     # 如果没有今日数据，尝试获取最近的状态
     if not current_status:
         for i in range(1, 7):
-            date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+            date = (datetime.now(tz) - timedelta(days=i)).strftime("%Y-%m-%d")
             data = load_intel(date)
             if data and data.get("exchange_status"):
                 current_status = data["exchange_status"].get(exchange_name)
