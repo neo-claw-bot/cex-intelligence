@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-CEX 每日简报生成器 - 轻量版
-用于定时任务生成每日简报
+CEX 每日简报生成器 - 中文版
+用于定时任务生成每日简报（中文+URL引用）
 """
 
 import os
@@ -43,40 +43,56 @@ def extract_text(response: dict) -> str:
     return ""
 
 def collect_daily_intel() -> dict:
-    """采集每日情报"""
+    """采集每日情报（中文版）"""
     exchanges = ["Binance", "OKX", "Coinbase", "Bybit", "Bitget", "Kraken", "KuCoin"]
     today = datetime.now().strftime("%Y-%m-%d")
     
-    prompt = f"""Generate a comprehensive daily intelligence briefing for major crypto exchanges: {', '.join(exchanges)}.
+    prompt = f"""生成一份综合的CEX交易所每日情报简报（用中文回复）。
 
-Search for (last 24-48 hours):
-1. Security incidents or hacks
-2. Withdrawal/deposit issues  
-3. Regulatory actions or legal issues
-4. Service outages or technical problems
-5. Scam warnings or user complaints
-6. Major announcements
+监控交易所: {', '.join(exchanges)}
 
-Return a structured JSON report:
+搜索内容（最近24-48小时）:
+1. 安全事件或黑客攻击
+2. 提现/存款问题
+3. 监管行动或法律问题
+4. 服务中断或技术故障
+5. 诈骗警告或用户投诉
+6. 重大公告
+
+请用中文返回结构化JSON报告，包含URL引用：
 {{
-  "summary": "brief overall summary",
+  "summary": "用中文写的整体摘要",
   "alerts": [
-    {{"exchange": "name", "severity": "critical|high|medium|low", "title": "alert title", "description": "details"}}
+    {{
+      "exchange": "交易所名称",
+      "severity": "critical|high|medium|low",
+      "title": "中文标题",
+      "description": "中文详细描述",
+      "url": "相关新闻或推文链接"
+    }}
   ],
   "exchange_status": {{
-    "Binance": {{"status": "normal|warning|critical", "notes": "brief notes"}},
-    "OKX": {{"status": "normal|warning|critical", "notes": "brief notes"}},
-    "Coinbase": {{"status": "normal|warning|critical", "notes": "brief notes"}},
-    "Bybit": {{"status": "normal|warning|critical", "notes": "brief notes"}},
-    "Bitget": {{"status": "normal|warning|critical", "notes": "brief notes"}},
-    "Kraken": {{"status": "normal|warning|critical", "notes": "brief notes"}},
-    "KuCoin": {{"status": "normal|warning|critical", "notes": "brief notes"}}
+    "Binance": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
+    "OKX": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
+    "Coinbase": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
+    "Bybit": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
+    "Bitget": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
+    "Kraken": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
+    "KuCoin": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}}
   }},
-  "fintelegram_highlights": ["key findings"],
-  "sources_checked": ["x_search", "web_search"]
+  "fintelegram_highlights": [
+    {{"content": "中文内容", "url": "原文链接"}}
+  ],
+  "sources": [
+    {{"name": "来源名称", "url": "链接"}}
+  ]
 }}
 
-Be concise but thorough. If no issues found for an exchange, mark as "normal"."""
+注意：
+1. 所有文本字段必须用中文
+2. 尽可能为每条情报提供来源URL
+3. 如果没有某交易所的消息，status设为normal，notes为空
+4. 如果没有相关情报，返回空数组"""
 
     print(f"🔍 正在采集 {today} 的情报...")
     response = call_grok(prompt, [{"type": "x_search"}, {"type": "web_search"}])
@@ -91,36 +107,41 @@ Be concise but thorough. If no issues found for an exchange, mark as "normal".""
         return {
             "date": today,
             "collected_at": datetime.now().isoformat(),
-            "error": "Failed to parse response",
-            "raw_text": text[:500] if text else ""
+            "error": "解析失败",
+            "summary": "数据采集异常，请稍后重试",
+            "alerts": [],
+            "exchange_status": {ex: {"status": "normal", "notes": "", "url": ""} for ex in exchanges},
+            "fintelegram_highlights": [],
+            "sources": []
         }
 
 def save_intel(data: dict):
     """保存情报"""
+    # 保存到项目目录
     data_dir = Path("/Users/neo/.openclaw/workspace-cex-intelligence/data/intelligence")
     data_dir.mkdir(parents=True, exist_ok=True)
     
+    # 保存到 web 目录（用于部署）
+    web_data_dir = Path("/Users/neo/.openclaw/workspace-cex-intelligence/web/data/intelligence")
+    web_data_dir.mkdir(parents=True, exist_ok=True)
+    
     filepath = data_dir / f"{data['date']}.json"
+    web_filepath = web_data_dir / f"{data['date']}.json"
+    
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    with open(web_filepath, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
     print(f"💾 已保存: {filepath}")
     return filepath
 
-def load_intel(date: str) -> dict:
-    """加载指定日期情报"""
-    data_dir = Path("/Users/neo/.openclaw/workspace-cex-intelligence/data/intelligence")
-    filepath = data_dir / f"{date}.json"
-    
-    if filepath.exists():
-        with open(filepath, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    return None
-
 def format_briefing(data: dict) -> str:
-    """格式化简报"""
+    """格式化为Discord消息（中文）"""
     lines = []
-    lines.append("🎯 **CEX 情报每日简报**")
-    lines.append(f"📅 {data['date']} | ⏰ {data['collected_at'][:16]}")
+    lines.append("## 🎯 CEX 情报每日简报")
+    lines.append(f"📅 {data['date']}")
     lines.append("")
     
     # 关键警报
@@ -132,24 +153,29 @@ def format_briefing(data: dict) -> str:
         lines.append("🚨 **严重警报**")
         for a in critical:
             lines.append(f"🔴 **{a['exchange']}**: {a['title']}")
-            lines.append(f"   {a.get('description', '')[:150]}...")
+            if a.get('url'):
+                lines.append(f"   [来源]({a['url']})")
         lines.append("")
     
     if high:
         lines.append("⚠️ **高风险事件**")
         for a in high[:3]:
             lines.append(f"🟠 **{a['exchange']}**: {a['title']}")
+            if a.get('url'):
+                lines.append(f"   [来源]({a['url']})")
         lines.append("")
     
     # 交易所状态
     lines.append("📊 **交易所状态**")
-    status_emoji = {"normal": "✅", "warning": "⚠️", "critical": "🚨"}
-    
     for ex, info in data.get("exchange_status", {}).items():
-        emoji = status_emoji.get(info.get("status", "normal"), "⚪")
+        emoji = {"normal": "🟢", "warning": "🟡", "critical": "🔴"}.get(info.get("status"), "⚪")
         notes = info.get("notes", "")
+        url = info.get("url", "")
         if notes:
-            lines.append(f"{emoji} **{ex}**: {notes[:60]}{'...' if len(notes) > 60 else ''}")
+            line = f"{emoji} **{ex}**: {notes[:60]}"
+            if url:
+                line += f" [🔗]({url})"
+            lines.append(line)
         else:
             lines.append(f"{emoji} **{ex}**: 正常")
     
@@ -159,12 +185,30 @@ def format_briefing(data: dict) -> str:
         lines.append("")
         lines.append(f"🔍 **FinTelegram**: {len(ft)} 条关注")
         for item in ft[:2]:
-            lines.append(f"   • {item[:80]}{'...' if len(item) > 80 else ''}")
+            content = item.get("content", item) if isinstance(item, dict) else item
+            url = item.get("url", "") if isinstance(item, dict) else ""
+            line = f"   • {content[:80]}"
+            if url:
+                line += f" [🔗]({url})"
+            lines.append(line)
     
     # 摘要
     if data.get("summary"):
         lines.append("")
-        lines.append(f"💡 **摘要**: {data['summary']}")
+        lines.append(f"💡 **摘要**: {data['summary'][:200]}")
+    
+    # 数据来源
+    sources = data.get("sources", [])
+    if sources:
+        lines.append("")
+        lines.append("📚 **数据来源**:")
+        for src in sources[:3]:
+            name = src.get("name", "未知")
+            url = src.get("url", "")
+            if url:
+                lines.append(f"   • [{name}]({url})")
+            else:
+                lines.append(f"   • {name}")
     
     lines.append("")
     lines.append("—")
@@ -174,7 +218,7 @@ def format_briefing(data: dict) -> str:
 
 def generate_briefing():
     """生成每日简报主流程"""
-    print("🚀 CEX 每日简报生成器")
+    print("🚀 CEX 每日简报生成器（中文版）")
     print("=" * 50)
     
     # 采集今日情报
@@ -186,9 +230,14 @@ def generate_briefing():
     # 格式化输出
     briefing = format_briefing(data)
     
-    # 输出到文件（便于读取）
+    # 输出到文件
     output_file = Path("/Users/neo/.openclaw/workspace-cex-intelligence/data/last_briefing.txt")
     with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(briefing)
+    
+    # 同时保存到 web 目录
+    web_output_file = Path("/Users/neo/.openclaw/workspace-cex-intelligence/web/data/last_briefing.txt")
+    with open(web_output_file, 'w', encoding='utf-8') as f:
         f.write(briefing)
     
     print("\n" + "=" * 50)

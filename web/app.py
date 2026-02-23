@@ -272,7 +272,8 @@ def get_exchange_history(exchange_name):
                     "description": status_info["notes"],
                     "severity": "low",
                     "category": "status",
-                    "status": status_info.get("status", "normal")
+                    "status": status_info.get("status", "normal"),
+                    "url": status_info.get("url", "")
                 })
     
     # 按日期排序（最新的在前）

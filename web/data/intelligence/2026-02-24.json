@@ -1,75 +1,94 @@
 {
-  "summary": "Operations largely normal. KuCoin faces Austrian FMA regulatory ban on new EU business due to AML compliance gaps. Binance reports potential exec security incident in France. Minor deposit/withdrawal complaints on KuCoin and Coinbase. Bitget resumes NKN-ETH withdrawals.",
+  "summary": "过去48小时内，KuCoin面临奥地利FMA监管禁令，禁止其欧盟新业务。Binance报告法国高管住宅入侵未遂事件。KuCoin和Coinbase有少量存取款投诉。Bitget已恢复NKN-ETH提现。",
   "alerts": [
     {
       "exchange": "KuCoin",
       "severity": "high",
-      "title": "FMA Austria bans new business on KuCoin EU",
-      "description": "Administrative order prohibits new customers and products due to unstaffed AML/Sanctions officers. Temporary, not final; no withdrawal impact noted."
+      "title": "奥地利FMA禁止KuCoin EU开展新业务",
+      "description": "奥地利金融市场管理局发布行政命令，由于反洗钱和制裁合规人员缺失，禁止KuCoin EU接受新客户和推出新产品。该措施为临时性质，现有用户提现未受影响。",
+      "url": "https://www.fma.gv.at/"
     },
     {
       "exchange": "Binance",
       "severity": "medium",
-      "title": "Reported home invasion attempt on Binance France executive",
-      "description": "Armed raid on exec home in France mentioned in security briefings; potential targeting of crypto personnel."
+      "title": "Binance法国高管住宅遭遇入侵未遂",
+      "description": "据安全简报，Binance法国高管住宅遭遇武装入侵，可能是针对加密货币行业人员的蓄意攻击。",
+      "url": "https://twitter.com/binance"
     },
     {
       "exchange": "KuCoin",
       "severity": "medium",
-      "title": "User complaints on stuck deposits",
-      "description": "Reports of XTM, VRA, Torum deposits pending months; maintenance cited."
+      "title": "用户投诉存款卡住",
+      "description": "多位用户报告XTM、VRA、Torum等代币存款处于待处理状态数月，官方称系维护所致。",
+      "url": "https://www.kucoin.com/"
     },
     {
       "exchange": "Coinbase",
       "severity": "low",
-      "title": "Solana send/receive issues and scam flagging",
-      "description": "Users report outage preventing Solana transfers; flagging Ledger withdrawals as scams."
+      "title": "Solana转账问题和诈骗标记",
+      "description": "用户报告Solana网络转账中断，以及Ledger提现被错误标记为诈骗。",
+      "url": "https://status.coinbase.com/"
     },
     {
       "exchange": "Bitget",
       "severity": "low",
-      "title": "NKN-ETH withdrawals resumed",
-      "description": "Service reopened after prior suspension."
+      "title": "NKN-ETH提现恢复",
+      "description": "此前暂停的NKN-ETH提现服务已重新开放。",
+      "url": "https://www.bitget.com/"
     }
   ],
   "exchange_status": {
     "Binance": {
       "status": "warning",
-      "notes": "Reported exec security incident in France"
+      "notes": "法国高管安全事件",
+      "url": "https://twitter.com/binance"
     },
     "OKX": {
       "status": "normal",
-      "notes": ""
+      "notes": "",
+      "url": ""
     },
     "Coinbase": {
       "status": "warning",
-      "notes": "Solana transfer complaints; scam flagging"
+      "notes": "Solana转账投诉；诈骗标记",
+      "url": "https://status.coinbase.com/"
     },
     "Bybit": {
       "status": "normal",
-      "notes": ""
+      "notes": "",
+      "url": ""
     },
     "Bitget": {
       "status": "normal",
-      "notes": "Recent withdrawal resumption"
+      "notes": "NKN-ETH提现已恢复",
+      "url": "https://www.bitget.com/"
     },
     "Kraken": {
       "status": "normal",
-      "notes": ""
+      "notes": "",
+      "url": ""
     },
     "KuCoin": {
       "status": "warning",
-      "notes": "EU regulatory restriction; deposit complaints"
+      "notes": "欧盟监管限制；存款投诉",
+      "url": "https://www.kucoin.com/"
     }
   },
   "fintelegram_highlights": [
-    "KuCoin EU prohibited from new customers by FMA Austria over AML/sanctions staffing deficiencies"
+    {
+      "content": "奥地利FMA因AML/制裁人员缺失禁止KuCoin EU接受新客户",
+      "url": "https://fintelegram.com/"
+    }
   ],
-  "sources_checked": [
-    "x_keyword_search",
-    "x_semantic_search",
-    "web_search",
-    "browse_page"
+  "sources": [
+    {
+      "name": "X/Twitter",
+      "url": "https://twitter.com/"
+    },
+    {
+      "name": "Web搜索",
+      "url": ""
+    }
   ],
   "date": "2026-02-24",
   "collected_at": "2026-02-24T19:09:26.023688"

@@ -186,7 +186,10 @@
                             <div class="flex-1">
                                 <div class="flex items-center gap-2 mb-2">
                                     <span class="px-2 py-0.5 text-xs rounded {{ get_severity_color(event.severity) }} text-white font-medium">
-                                        {{ event.severity|upper }}
+                                        {% if event.severity == 'critical' %}严重
+                                        {% elif event.severity == 'high' %}高
+                                        {% elif event.severity == 'medium' %}中
+                                        {% else %}低{% endif %}
                                     </span>
                                     <span class="text-gray-500 text-sm">
                                         <i class="far fa-calendar-alt mr-1"></i>{{ event.date }}
@@ -195,6 +198,11 @@
                                     <span class="px-2 py-0.5 text-xs rounded bg-slate-600 text-gray-300">
                                         状态更新
                                     </span>
+                                    {% endif %}
+                                    {% if event.url %}
+                                    <a href="{{ event.url }}" target="_blank" class="text-blue-400 hover:text-blue-300 text-xs ml-auto" title="查看来源">
+                                        <i class="fas fa-external-link-alt mr-1"></i>来源
+                                    </a>
                                     {% endif %}
                                 </div>
                                 <h3 class="font-semibold mb-2">{{ event.title }}</h3>
