@@ -1,0 +1,8 @@
+# OpenClaw Cron 配置 - CEX 情报监控
+# 每日定时采集情报并发送简报
+
+# 每日简报 - 北京时间 09:00, 15:00, 21:00
+0 9,15,21 * * * cd /Users/neo/.openclaw/workspace-cex-intelligence && /opt/homebrew/bin/python3 daily_briefing.py >> /Users/neo/.openclaw/workspace-cex-intelligence/data/cron.log 2>&1
+
+# 可选：每4小时进行一次快速检查（不发送简报，只更新数据）
+# 0 */4 * * * cd /Users/neo/.openclaw/workspace-cex-intelligence && /opt/homebrew/bin/python3 daily_briefing.py >> /Users/neo/.openclaw/workspace-cex-intelligence/data/cron.log 2>&1

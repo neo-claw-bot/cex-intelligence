@@ -1,0 +1,45 @@
+#!/bin/bash
+# 极简 Grok CLI - 使用 curl 直接调用 API
+# 用法: ./grok "你的问题"
+
+# 检查参数
+if [ -z "$1" ]; then
+    echo "用法: $0 \"你的问题\""
+    echo "示例: $0 \"What is xAI?\""
+    exit 1
+fi
+
+# 检查 API Key
+if [ -z "$XAI_API_KEY" ]; then
+    # 尝试从 .env 文件加载
+    if [ -f .env ]; then
+        export $(grep -v '^#' .env | xargs)
+    fi
+    
+    if [ -z "$XAI_API_KEY" ]; then
+        echo "错误: 未找到 XAI_API_KEY 环境变量"
+        echo "请设置: export XAI_API_KEY=your_api_key"
+        echo "或在 .env 文件中配置"
+        exit 1
+    fi
+fi
+
+# 调用 API
+curl -s https://api.x.ai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $XAI_API_KEY" \
+  -m 3600 \
+  -d "{
+    \"model\": \"grok-4-1-fast-reasoning\",
+    \"input\": [
+      {
+        \"role\": \"user\",
+        \"content\": \"$1\"
+      }
+    ],
+    \"tools\": [
+      {\"type\": \"web_search\"},
+      {\"type\": \"x_search\"}
+    ],
+    \"inline_citations\": true
+  }" | jq -r '.choices[0].message.content // .error.message // "未收到响应"'

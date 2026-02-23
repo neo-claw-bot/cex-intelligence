@@ -1,0 +1,18 @@
+{
+  "name": "CEX Intelligence Dashboard",
+  "description": "Web3交易所情报监控系统",
+  "repository": "https://github.com/neo-claw-bot/cex-intelligence",
+  "logo": "https://raw.githubusercontent.com/neo-claw-bot/cex-intelligence/main/web/static/logo.png",
+  "env": {
+    "PYTHON_VERSION": {
+      "description": "Python version",
+      "value": "3.11"
+    }
+  },
+  "build": {
+    "cmd": "pip install -r requirements.txt"
+  },
+  "start": {
+    "cmd": "gunicorn app:app --bind 0.0.0.0:$PORT"
+  }
+}

@@ -1,0 +1,22 @@
+🎯 **CEX 情报每日简报**
+📅 2026-02-22 | ⏰ 2026-02-22T19:09
+
+⚠️ **高风险事件**
+🟠 **KuCoin**: FMA Austria bans new business on KuCoin EU
+
+📊 **交易所状态**
+⚠️ **Binance**: Reported exec security incident in France
+✅ **OKX**: 正常
+⚠️ **Coinbase**: Solana transfer complaints; scam flagging
+✅ **Bybit**: 正常
+✅ **Bitget**: Recent withdrawal resumption
+✅ **Kraken**: 正常
+⚠️ **KuCoin**: EU regulatory restriction; deposit complaints
+
+🔍 **FinTelegram**: 1 条关注
+   • KuCoin EU prohibited from new customers by FMA Austria over AML/sanctions staffi...
+
+💡 **摘要**: Operations largely normal. KuCoin faces Austrian FMA regulatory ban on new EU business due to AML compliance gaps. Binance reports potential exec security incident in France. Minor deposit/withdrawal complaints on KuCoin and Coinbase. Bitget resumes NKN-ETH withdrawals.
+
+—
+💬 回复 `详情 [交易所名]` 获取更多信息
