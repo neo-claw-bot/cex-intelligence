@@ -140,8 +140,17 @@ def analyze_30_days():
     severity_order = {"critical": 0, "high": 1, "medium": 2, "low": 3}
     all_alerts.sort(key=lambda x: (severity_order.get(x.get("severity", "low"), 4), x.get("date", "")))
     
-    # 只返回最近30天内的高优先级警报
-    significant_alerts = [a for a in all_alerts if a.get("severity") in ["critical", "high"]][:10]
+    # 只返回最近30天内的高优先级警报（排除超过30天的历史数据）
+    tz = pytz.timezone('Asia/Shanghai')
+    today = datetime.now(tz)
+    cutoff_date = (today - timedelta(days=30)).strftime("%Y-%m-%d")
+    
+    significant_alerts = [
+        a for a in all_alerts 
+        if a.get("severity") in ["critical", "high"] 
+        and a.get("date", "") >= cutoff_date
+        and not a.get("is_historical", False)  # 排除标记为历史的数据
+    ][:10]
     
     return {
         "significant_alerts": significant_alerts,
