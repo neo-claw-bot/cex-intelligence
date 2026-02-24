@@ -1,13 +1,27 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 from datetime import datetime, timedelta
 from pathlib import Path
 import json
 import os
 import pytz
+from functools import wraps
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'cex-intelligence-default-key-change-in-production')
+
+# 配置访问密码（从环境变量读取，默认为 cex2024）
+ACCESS_PASSWORD = os.environ.get('ACCESS_PASSWORD', 'cex2024')
 
 DATA_DIR = Path(__file__).parent / "data" / "intelligence"
+
+def login_required(f):
+    """登录验证装饰器"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get('authenticated') != True:
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 def load_intel(date_str):
     """加载指定日期的情报数据"""
@@ -159,7 +173,28 @@ def analyze_30_days():
         "total_alerts": len(all_alerts)
     }
 
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    """登录页面"""
+    error = None
+    if request.method == 'POST':
+        password = request.form.get('password', '')
+        if password == ACCESS_PASSWORD:
+            session['authenticated'] = True
+            next_url = request.args.get('next') or url_for('index')
+            return redirect(next_url)
+        else:
+            error = '密码错误，请重试'
+    return render_template('login.html', error=error)
+
+@app.route("/logout")
+def logout():
+    """退出登录"""
+    session.pop('authenticated', None)
+    return redirect(url_for('login'))
+
 @app.route("/")
+@login_required
 def index():
     """首页 - 显示最新简报"""
     tz = pytz.timezone('Asia/Shanghai')
@@ -186,6 +221,7 @@ def index():
                           get_status_emoji=get_status_emoji)
 
 @app.route("/dashboard")
+@login_required
 def dashboard():
     """Dashboard - 整体状态显示"""
     # 获取今日数据
@@ -211,6 +247,7 @@ def dashboard():
                           today=datetime.now().strftime("%Y-%m-%d"))
 
 @app.route("/date/<date_str>")
+@login_required
 def date_view(date_str):
     """查看指定日期的简报"""
     data = load_intel(date_str)
@@ -229,6 +266,7 @@ def date_view(date_str):
                           get_status_emoji=get_status_emoji)
 
 @app.route("/api/latest")
+@login_required
 def api_latest():
     """API: 获取最新简报数据"""
     tz = pytz.timezone('Asia/Shanghai')
@@ -247,11 +285,13 @@ def api_latest():
     return jsonify({"error": "No data available"}), 404
 
 @app.route("/api/dates")
+@login_required
 def api_dates():
     """API: 获取可用日期列表"""
     return jsonify(get_available_dates())
 
 @app.route("/api/<date_str>")
+@login_required
 def api_date(date_str):
     """API: 获取指定日期数据"""
     data = load_intel(date_str)
@@ -260,6 +300,7 @@ def api_date(date_str):
     return jsonify({"error": "Date not found"}), 404
 
 @app.route("/api/dashboard")
+@login_required
 def api_dashboard():
     """API: 获取Dashboard数据"""
     analysis = analyze_30_days()
@@ -362,6 +403,7 @@ def get_exchange_history(exchange_name):
 
 
 @app.route("/exchange/<exchange_name>")
+@login_required
 def exchange_detail(exchange_name):
     """交易所详情页 - 显示该交易所的所有历史事件"""
     history, stats = get_exchange_history(exchange_name)
