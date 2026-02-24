@@ -57,6 +57,14 @@ def get_severity_score(severity):
     }
     return scores.get(severity, 0)
 
+def load_historical_data():
+    """加载2025年至今的历史数据"""
+    historical_file = DATA_DIR / "historical-2025.json"
+    if historical_file.exists():
+        with open(historical_file, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return None
+
 def analyze_30_days():
     """分析最近30天的数据，生成摘要和交易所评分"""
     dates = get_available_dates()
@@ -75,6 +83,21 @@ def analyze_30_days():
             "score": 100,
             "status": "normal"
         }
+    
+    # 加载历史数据（2025年至今）
+    historical_data = load_historical_data()
+    if historical_data and historical_data.get("alerts"):
+        for alert in historical_data["alerts"]:
+            alert["is_historical"] = True  # 标记为历史数据
+            all_alerts.append(alert)
+            
+            # 统计历史数据
+            ex = alert.get("exchange", "Unknown")
+            if ex in exchange_stats:
+                exchange_stats[ex]["total_alerts"] += 1
+                severity = alert.get("severity", "low")
+                if severity in exchange_stats[ex]:
+                    exchange_stats[ex][severity] += 1
     
     for date in dates:
         data = load_intel(date)

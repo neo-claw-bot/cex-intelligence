@@ -1,0 +1,168 @@
+{
+  "summary": "2025年至今主要交易所历史争议事件汇总",
+  "alerts": [
+    {
+      "exchange": "Binance",
+      "severity": "medium",
+      "title": "SEC冻结对Binance的诉讼案件",
+      "description": "SEC暂停对Binance的执法行动，属于监管行动暂停",
+      "date": "2025-02-14",
+      "url": "https://www.binance.com/ru-KZ/square/post/20300909740553",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "Binance",
+      "severity": "medium",
+      "title": "SEC放弃对Binance的诉讼",
+      "description": "SEC正式放弃对Binance的诉讼，结束剩余加密行动之一",
+      "date": "2025-05-29",
+      "url": "https://www.cnbc.com/2025/05/29/sec-drops-binance-lawsuit-ending-one-of-last-remaining-crypto-actions.html",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "Binance",
+      "severity": "high",
+      "title": "Binance等交易所转移受制裁加密货币，涉及洗钱争议",
+      "description": "国际调查记者联盟(ICIJ)调查显示Binance等交易所涉及转移受制裁加密货币，引发洗钱争议",
+      "date": "2025-11-17",
+      "url": "https://www.icij.org/investigations/coin-laundry/cryptocurrency-exchanges-binance-okx-money-laundering-crime",
+      "tags": ["news", "regulatory", "security"]
+    },
+    {
+      "exchange": "OKX",
+      "severity": "high",
+      "title": "OKX承认违反美国反洗钱法，支付超5亿美元罚款",
+      "description": "OKX就违反美国反洗钱法认罪，同意支付超过5亿美元罚款和罚金",
+      "date": "2025-02-24",
+      "url": "https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "OKX",
+      "severity": "medium",
+      "title": "OKX关闭朝鲜黑客使用的工具",
+      "description": "OKX关闭被朝鲜黑客使用的交易工具，涉及地缘安全风险",
+      "date": "2025-03-17",
+      "url": "https://therecord.media/crypto-okx-shuts-down-exchange",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Coinbase",
+      "severity": "medium",
+      "title": "SEC放弃对Coinbase的民事执法行动",
+      "description": "SEC正式宣布放弃对Coinbase的民事执法行动，监管诉讼结束",
+      "date": "2025-02-27",
+      "url": "https://www.sec.gov/newsroom/press-releases/2025-47",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "Coinbase",
+      "severity": "high",
+      "title": "Coinbase数据泄露事件，影响近7万用户",
+      "description": "Coinbase发生数据泄露事件，影响近7万用户，引发集体诉讼",
+      "date": "2025-05-11",
+      "url": "https://www.classaction.org/data-breach-lawsuits/coinbase-may-2025",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Coinbase",
+      "severity": "medium",
+      "title": "Coinbase与Space Coast Credit Union就加密黑客事件和解",
+      "description": "Coinbase与Space Coast Credit Union就加密黑客事件达成诉讼和解",
+      "date": "2026-01-20",
+      "url": "https://www.cutimes.com/2026/01/20/space-coast-credit-union-coinbase-settle-crypto-hack-lawsuit",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Bybit",
+      "severity": "critical",
+      "title": "Bybit遭受15亿美元黑客攻击，史上最大加密盗窃事件",
+      "description": "Bybit遭受朝鲜Lazarus Group攻击，被盗15亿美元以太坊，为史上最大加密货币盗窃案",
+      "date": "2025-02-21",
+      "url": "https://www.cnbc.com/2025/02/21/hackers-steal-1point5-billion-from-exchange-bybit-biggest-crypto-heist.html",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Bitget",
+      "severity": "medium",
+      "title": "Bitget对8名用户套利VOXEL交易获利超2000万美元提起法律行动",
+      "description": "Bitget对涉嫌利用系统漏洞套利VOXEL交易获利超2000万美元的8名用户提起法律诉讼",
+      "date": "2025-04-28",
+      "url": "https://cryptoslate.com/bitget-to-pursue-legal-action-against-8-users-who-profited-over-20m-from-voxel-trading-fiasco",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Kraken",
+      "severity": "medium",
+      "title": "SEC同意放弃对Kraken的诉讼，无罚款无认错",
+      "description": "SEC同意放弃对Kraken的诉讼，Kraken无需支付罚款或承认过错",
+      "date": "2025-03-03",
+      "url": "https://blog.kraken.com/news/sec-lawsuit-dismissal",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "Kraken",
+      "severity": "medium",
+      "title": "SEC正式放弃对Kraken的执法行动",
+      "description": "SEC正式放弃对Kraken的执法行动，监管诉讼彻底结束",
+      "date": "2025-03-28",
+      "url": "https://www.americanbanker.com/news/sec-drops-enforcement-action-against-crypto-exchange-kraken",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "KuCoin",
+      "severity": "medium",
+      "title": "KuCoin上诉加拿大FINTRAC罚款决定",
+      "description": "KuCoin就加拿大金融交易和报告分析中心(FINTRAC)的罚款决定提出上诉",
+      "date": "2025-09-25",
+      "url": "https://www.prnewswire.com/news-releases/kucoin-appeals-fintrac-decision-reaffirms-commitment-to-compliance-302567410.html",
+      "tags": ["news", "regulatory"]
+    }
+  ],
+  "exchange_status": {
+    "Binance": {
+      "status": "warning",
+      "notes": "2025年经历SEC诉讼，11月涉及洗钱争议调查",
+      "url": "https://www.icij.org/investigations/coin-laundry/cryptocurrency-exchanges-binance-okx-money-laundering-crime"
+    },
+    "OKX": {
+      "status": "warning",
+      "notes": "2025年2月就反洗钱违规认罪，支付超5亿美元罚款",
+      "url": "https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties"
+    },
+    "Coinbase": {
+      "status": "warning",
+      "notes": "2025年5月发生数据泄露影响7万用户，已和解",
+      "url": "https://www.classaction.org/data-breach-lawsuits/coinbase-may-2025"
+    },
+    "Bybit": {
+      "status": "critical",
+      "notes": "2025年2月遭受15亿美元黑客攻击，史上最大加密盗窃",
+      "url": "https://www.cnbc.com/2025/02/21/hackers-steal-1point5-billion-from-exchange-bybit-biggest-crypto-heist.html"
+    },
+    "Bitget": {
+      "status": "warning",
+      "notes": "2025年4月发生VOXEL套利事件，对用户提起法律诉讼",
+      "url": "https://cryptoslate.com/bitget-to-pursue-legal-action-against-8-users-who-profited-over-20m-from-voxel-trading-fiasco"
+    },
+    "Kraken": {
+      "status": "normal",
+      "notes": "2025年3月SEC诉讼被驳回，无罚款无认错",
+      "url": "https://blog.kraken.com/news/sec-lawsuit-dismissal"
+    },
+    "KuCoin": {
+      "status": "warning",
+      "notes": "2025年9月就加拿大FINTRAC罚款决定提出上诉",
+      "url": "https://www.prnewswire.com/news-releases/kucoin-appeals-fintrac-decision-reaffirms-commitment-to-compliance-302567410.html"
+    }
+  },
+  "sources": [
+    {"name": "CNBC", "url": "https://www.cnbc.com", "type": "news"},
+    {"name": "SEC", "url": "https://www.sec.gov", "type": "regulatory"},
+    {"name": "DOJ", "url": "https://www.justice.gov", "type": "regulatory"},
+    {"name": "ICIJ", "url": "https://www.icij.org", "type": "news"}
+  ],
+  "date": "historical-2025",
+  "collected_at": "2026-02-24T10:00:00.000000",
+  "period": "2025-01至2026-02"
+}
