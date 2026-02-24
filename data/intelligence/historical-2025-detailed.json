@@ -1,0 +1,257 @@
+{
+  "summary": "2025年至今主要交易所详细争议事件汇总（CER.live监控交易所）",
+  "alerts": [
+    {
+      "exchange": "Binance",
+      "severity": "high",
+      "title": "Stein Mitchell等律所对Binance提起诉讼，指控协助恐怖融资",
+      "description": "多家律所联合起诉Binance明知故犯地为哈马斯、真主党等恐怖组织提供融资便利",
+      "date": "2025-11-24",
+      "url": "https://www.steinmitchell.com/news-222",
+      "tags": ["news", "regulatory", "lawsuit"]
+    },
+    {
+      "exchange": "Binance",
+      "severity": "medium",
+      "title": "ICIJ报道Binance等交易所转移脏币",
+      "description": "国际调查记者联盟调查显示Binance在监管打击后仍转移涉洗钱加密货币",
+      "date": "2025-11-17",
+      "url": "https://www.icij.org/investigations/coin-laundry/cryptocurrency-exchanges-binance-okx-money-laundering-crime",
+      "tags": ["news", "regulatory", "security"]
+    },
+    {
+      "exchange": "OKX",
+      "severity": "critical",
+      "title": "OKX承认违反美国反洗钱法，同意支付超过5亿美元罚款",
+      "description": "OKX认罪经营无牌货币传输业务，面临巨额罚款和刑事指控",
+      "date": "2025-02-24",
+      "url": "https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "OKX",
+      "severity": "high",
+      "title": "OKX关闭被朝鲜黑客滥用的DeFi工具，并冻结Bybit黑客资金",
+      "description": "OKX检测到朝鲜黑客团体滥用其DeFi服务，并冻结Bybit黑客洗钱资金",
+      "date": "2025-03-17",
+      "url": "https://therecord.media/crypto-okx-shuts-down-exchange",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Coinbase",
+      "severity": "critical",
+      "title": "Coinbase数据泄露引发集体诉讼",
+      "description": "Coinbase遭受安全事件，导致用户数据泄露，多家律所提起集体诉讼",
+      "date": "2025-05-11",
+      "url": "https://milberg.com/news/coinbase-data-breach-class-action-lawsuit",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Coinbase",
+      "severity": "high",
+      "title": "俄勒冈州检察长起诉Coinbase推广高风险投资",
+      "description": "Coinbase被指鼓励并协助向俄勒冈居民销售未注册加密货币",
+      "date": "2025-04-18",
+      "url": "https://www.doj.state.or.us/media-home/news-media-releases/oregon-attorney-general-rayfield-sues-coinbase-for-promoting-and-selling-high-risk-investments",
+      "tags": ["news", "regulatory", "lawsuit"]
+    },
+    {
+      "exchange": "Coinbase",
+      "severity": "high",
+      "title": "Coinbase高管面临内幕交易诉讼",
+      "description": "法院允许针对Coinbase CEO和董事的内幕交易集体诉讼继续",
+      "date": "2026-02-01",
+      "url": "https://www.pymnts.com/cryptocurrency/2026/coinbase-directors-and-ceo-facing-insider-trading-lawsuit",
+      "tags": ["news", "regulatory", "lawsuit"]
+    },
+    {
+      "exchange": "Bybit",
+      "severity": "critical",
+      "title": "Bybit遭受朝鲜Lazarus集团15亿美元黑客攻击",
+      "description": "朝鲜黑客窃取约15亿美元ETH，此为史上最大加密黑客事件，影响全球市场",
+      "date": "2025-02-21",
+      "url": "https://www.wilsoncenter.org/article/bybit-heist-what-happened-what-now",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Bitget",
+      "severity": "medium",
+      "title": "澳大利亚ASIC警告Bitget无牌期货产品",
+      "description": "ASIC警告投资者Bitget提供无牌加密期货产品，并提及多国监管行动",
+      "date": "2025-07-28",
+      "url": "https://asic.gov.au/about-asic/news-centre/news-items/investor-alert-asic-warns-investors-of-bitget-s-unlicensed-crypto-asset-futures-products",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "Bitget",
+      "severity": "low",
+      "title": "Bitget用户投诉账户被黑、P2P欺诈",
+      "description": "多起用户报告账户被黑、P2P交易欺诈等问题",
+      "date": "2025-04",
+      "url": "https://www.reddit.com/r/CryptoScams/comments/1kjx6rj/my_bitget_account_was_hackedbe_careful",
+      "tags": ["user_report", "forum"]
+    },
+    {
+      "exchange": "KuCoin",
+      "severity": "critical",
+      "title": "KuCoin承认无牌货币传输罪，同意支付罚款并退出美国市场",
+      "description": "KuCoin认罪并支付约3亿美元罚款，承诺两年内退出美国市场",
+      "date": "2025-01-27",
+      "url": "https://www.justice.gov/usao-sdny/pr/kucoin-pleads-guilty-unlicensed-money-transmission-charge-and-agrees-pay-penalties",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "MEXC",
+      "severity": "medium",
+      "title": "MEXC错误冻结交易员300万美元资金并道歉",
+      "description": "MEXC错误冻结用户资金，引发关注，后道歉并解冻",
+      "date": "2025-11-01",
+      "url": "https://finance.yahoo.com/news/mexc-apologizes-wrongfully-freezing-3m-091233346.html",
+      "tags": ["news", "user_report"]
+    },
+    {
+      "exchange": "Gate",
+      "severity": "medium",
+      "title": "Gate.io用户账户被黑和诈骗投诉",
+      "description": "多起用户报告账户被黑，如16k美元损失",
+      "date": "2025-08-25",
+      "url": "https://www.reddit.com/r/CryptoCurrency/comments/1mzlg9u/my_gate_account_account_was_hacked_this_morning",
+      "tags": ["user_report", "forum"]
+    },
+    {
+      "exchange": "HTX",
+      "severity": "high",
+      "title": "英国FCA对HTX提起诉讼，指控非法金融推广",
+      "description": "FCA起诉HTX忽略监管警告，继续非法推广加密服务",
+      "date": "2026-02-10",
+      "url": "https://www.fca.org.uk/news/press-releases/fca-action-against-htx-illegal-financial-promotions",
+      "tags": ["news", "regulatory"]
+    },
+    {
+      "exchange": "Crypto.com",
+      "severity": "high",
+      "title": "Crypto.com未报告数据泄露事件",
+      "description": "Crypto.com遭受Scattered Spider黑客数据泄露，但未及时报告",
+      "date": "2025-09-21",
+      "url": "https://finance.yahoo.com/news/crypto-com-suffered-unreported-data-113413260.html",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Crypto.com",
+      "severity": "medium",
+      "title": "Crypto.com增发50亿美元CRO代币引发争议",
+      "description": "社区批评Crypto.com批准增发巨额CRO代币",
+      "date": "2025-03-19",
+      "url": "https://dig.watch/updates/crypto-com-under-fire-for-minting-5-billion-in-cro",
+      "tags": ["news", "user_report"]
+    },
+    {
+      "exchange": "Upbit",
+      "severity": "critical",
+      "title": "Upbit热钱包遭黑，损失约3000-3600万美元",
+      "description": "疑似朝鲜Lazarus集团攻击，韩国警方调查中，发现钱包漏洞",
+      "date": "2025-11-27",
+      "url": "https://www.halborn.com/blog/post/explained-the-upbit-hack-november-2025",
+      "tags": ["news", "security"]
+    },
+    {
+      "exchange": "Kraken",
+      "severity": "medium",
+      "title": "SEC放弃对Kraken的诉讼",
+      "description": "SEC同意放弃对Kraken的诉讼，无罚款无认错",
+      "date": "2025-03-03",
+      "url": "https://blog.kraken.com/news/sec-lawsuit-dismissal",
+      "tags": ["news", "regulatory"]
+    }
+  ],
+  "exchange_status": {
+    "Binance": {
+      "status": "warning",
+      "notes": "2025年11月面临恐怖融资诉讼和洗钱调查",
+      "url": "https://www.steinmitchell.com/news-222"
+    },
+    "OKX": {
+      "status": "critical",
+      "notes": "2025年2月就反洗钱违规认罪，支付超5亿美元罚款",
+      "url": "https://www.justice.gov/usao-sdny/pr/okx-pleads-guilty-violating-us-anti-money-laundering-laws-and-agrees-pay-penalties"
+    },
+    "Coinbase": {
+      "status": "warning",
+      "notes": "2025年数据泄露、内幕交易诉讼、监管起诉",
+      "url": "https://milberg.com/news/coinbase-data-breach-class-action-lawsuit"
+    },
+    "Bybit": {
+      "status": "critical",
+      "notes": "2025年2月遭受15亿美元黑客攻击，史上最大加密盗窃",
+      "url": "https://www.wilsoncenter.org/article/bybit-heist-what-happened-what-now"
+    },
+    "Bitget": {
+      "status": "warning",
+      "notes": "2025年7月ASIC警告无牌期货，用户投诉",
+      "url": "https://asic.gov.au/about-asic/news-centre/news-items/investor-alert-asic-warns-investors-of-bitget-s-unlicensed-crypto-asset-futures-products"
+    },
+    "Kraken": {
+      "status": "normal",
+      "notes": "2025年3月SEC诉讼被驳回（正面）",
+      "url": "https://blog.kraken.com/news/sec-lawsuit-dismissal"
+    },
+    "KuCoin": {
+      "status": "critical",
+      "notes": "2025年1月认罪并支付3亿美元罚款，退出美国市场",
+      "url": "https://www.justice.gov/usao-sdny/pr/kucoin-pleads-guilty-unlicensed-money-transmission-charge-and-agrees-pay-penalties"
+    },
+    "MEXC": {
+      "status": "warning",
+      "notes": "2025年11月错误冻结用户300万美元资金",
+      "url": "https://finance.yahoo.com/news/mexc-apologizes-wrongfully-freezing-3m-091233346.html"
+    },
+    "Gate": {
+      "status": "warning",
+      "notes": "多起用户账户被黑投诉",
+      "url": ""
+    },
+    "HTX": {
+      "status": "warning",
+      "notes": "2026年2月英国FCA起诉非法金融推广",
+      "url": "https://www.fca.org.uk/news/press-releases/fca-action-against-htx-illegal-financial-promotions"
+    },
+    "Crypto.com": {
+      "status": "warning",
+      "notes": "2025年数据泄露未报告，代币增发争议",
+      "url": "https://finance.yahoo.com/news/crypto-com-suffered-unreported-data-113413260.html"
+    },
+    "Upbit": {
+      "status": "critical",
+      "notes": "2025年11月热钱包遭黑，损失3000-3600万美元",
+      "url": "https://www.halborn.com/blog/post/explained-the-upbit-hack-november-2025"
+    },
+    "LBank": {
+      "status": "warning",
+      "notes": "多起用户资金冻结投诉",
+      "url": ""
+    },
+    "BitMart": {
+      "status": "warning",
+      "notes": "多起诈骗警告和用户投诉",
+      "url": ""
+    },
+    "DigiFinex": {
+      "status": "warning",
+      "notes": "诈骗警告和用户差评",
+      "url": ""
+    }
+  },
+  "sources": [
+    {"name": "DOJ", "url": "https://www.justice.gov", "type": "regulatory"},
+    {"name": "SEC", "url": "https://www.sec.gov", "type": "regulatory"},
+    {"name": "FCA", "url": "https://www.fca.org.uk", "type": "regulatory"},
+    {"name": "ASIC", "url": "https://asic.gov.au", "type": "regulatory"},
+    {"name": "ICIJ", "url": "https://www.icij.org", "type": "news"},
+    {"name": "Reuters", "url": "https://www.reuters.com", "type": "news"},
+    {"name": "Yahoo Finance", "url": "https://finance.yahoo.com", "type": "news"}
+  ],
+  "date": "historical-2025-detailed",
+  "collected_at": "2026-02-24T12:00:00.000000",
+  "period": "2025-01至2026-02",
+  "total_exchanges": 23
+}

@@ -72,7 +72,13 @@ def get_severity_score(severity):
     return scores.get(severity, 0)
 
 def load_historical_data():
-    """加载2025年至今的历史数据"""
+    """加载2025年至今的历史数据（优先使用详细版本）"""
+    # 优先使用详细版本
+    detailed_file = DATA_DIR / "historical-2025-detailed.json"
+    if detailed_file.exists():
+        with open(detailed_file, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    # 回退到简化版本
     historical_file = DATA_DIR / "historical-2025.json"
     if historical_file.exists():
         with open(historical_file, 'r', encoding='utf-8') as f:
