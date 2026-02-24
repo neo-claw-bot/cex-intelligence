@@ -61,7 +61,20 @@ def analyze_30_days():
     """分析最近30天的数据，生成摘要和交易所评分"""
     dates = get_available_dates()
     all_alerts = []
+    
+    # 初始化所有主流交易所的统计数据
+    TARGET_EXCHANGES = ["Binance", "OKX", "Coinbase", "Bybit", "Bitget", "Kraken", "KuCoin"]
     exchange_stats = {}
+    for ex in TARGET_EXCHANGES:
+        exchange_stats[ex] = {
+            "total_alerts": 0,
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "score": 100,
+            "status": "normal"
+        }
     
     for date in dates:
         data = load_intel(date)
@@ -76,19 +89,11 @@ def analyze_30_days():
                 
                 # 统计交易所数据
                 ex = alert.get("exchange", "Unknown")
-                if ex not in exchange_stats:
-                    exchange_stats[ex] = {
-                        "total_alerts": 0,
-                        "critical": 0,
-                        "high": 0,
-                        "medium": 0,
-                        "low": 0,
-                        "score": 100  # 初始满分
-                    }
-                exchange_stats[ex]["total_alerts"] += 1
-                severity = alert.get("severity", "low")
-                if severity in exchange_stats[ex]:
-                    exchange_stats[ex][severity] += 1
+                if ex in exchange_stats:
+                    exchange_stats[ex]["total_alerts"] += 1
+                    severity = alert.get("severity", "low")
+                    if severity in exchange_stats[ex]:
+                        exchange_stats[ex][severity] += 1
     
     # 计算交易所评分（满分100，根据严重事件扣分）
     for ex in exchange_stats:
