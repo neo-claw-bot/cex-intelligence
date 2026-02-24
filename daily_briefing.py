@@ -93,6 +93,14 @@ def collect_daily_intel() -> dict:
 - 或具体的推文链接（如 https://twitter.com/username/status/1234567890）
 - 不要使用交易所官网主页作为URL
 - 如果没有找到具体的新闻链接，url字段留空
+- tags字段：添加来源标签数组，可选值：
+  * "twitter" - X/Twitter来源
+  * "news" - 新闻媒体（CoinDesk, The Block等）
+  * "official" - 交易所官方公告
+  * "user_report" - 用户投诉/报告
+  * "regulatory" - 监管机构
+  * "security" - 安全公司/审计
+  * "forum" - 论坛/Reddit
 
 返回格式（中文JSON）：
 {{
@@ -104,7 +112,8 @@ def collect_daily_intel() -> dict:
       "title": "中文标题",
       "description": "中文详细描述",
       "url": "具体的新闻或推文链接，如果没有则留空",
-      "source_name": "来源名称（如CoinDesk、The Block、X用户@username）"
+      "source_name": "来源名称（如CoinDesk、The Block、X用户@username）",
+      "tags": ["twitter", "news", "official", "user_report"] // 标签数组
     }}
   ],
   "exchange_status": {{
