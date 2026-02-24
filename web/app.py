@@ -84,8 +84,34 @@ def analyze_30_days():
     dates = get_available_dates()
     all_alerts = []
     
-    # 初始化所有主流交易所的统计数据
-    TARGET_EXCHANGES = ["Binance", "OKX", "Coinbase", "Bybit", "Bitget", "Kraken", "KuCoin"]
+    # 初始化所有主流交易所的统计数据（CER.live 前20名 + 其他主要交易所）
+    TARGET_EXCHANGES = [
+        # CER.live 按交易量前20
+        "Binance",      # 1
+        "MEXC",         # 2
+        "Gate",         # 3 (Gate.io)
+        "Bitget",       # 4
+        "OKX",          # 5
+        "HTX",          # 6 (原Huobi)
+        "Bybit",        # 7
+        "Coinbase",     # 8
+        "CoinW",        # 9
+        "BitMart",      # 10
+        "Crypto.com",   # 11
+        "DigiFinex",    # 12
+        "LBank",        # 13
+        "Upbit",        # 14
+        "Toobit",       # 15
+        "WEEX",         # 16
+        "P2B",          # 17
+        "XT.COM",       # 18
+        "Tapbit",       # 19
+        "Kraken",       # 20
+        # CER.live 安全评分前列
+        "KuCoin",       # 安全排名第1
+        "WhiteBIT",     # 安全排名前列
+        "Deribit",      # 安全排名前列
+    ]
     exchange_stats = {}
     for ex in TARGET_EXCHANGES:
         exchange_stats[ex] = {

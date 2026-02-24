@@ -73,7 +73,14 @@ def is_generic_url(url: str) -> bool:
 
 def collect_daily_intel() -> dict:
     """采集每日情报（中文版）"""
-    exchanges = ["Binance", "OKX", "Coinbase", "Bybit", "Bitget", "Kraken", "KuCoin"]
+    exchanges = [
+        # CER.live 按交易量前20
+        "Binance", "MEXC", "Gate", "Bitget", "OKX", "HTX", "Bybit", "Coinbase",
+        "CoinW", "BitMart", "Crypto.com", "DigiFinex", "LBank", "Upbit", "Toobit",
+        "WEEX", "P2B", "XT.COM", "Tapbit", "Kraken",
+        # CER.live 安全评分前列
+        "KuCoin", "WhiteBIT", "Deribit"
+    ]
     today = datetime.now().strftime("%Y-%m-%d")
     
     prompt = f"""搜索并生成CEX交易所情报简报（用中文回复）。
