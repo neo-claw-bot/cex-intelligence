@@ -280,6 +280,26 @@ def get_exchange_history(exchange_name):
         "last_seen": None
     }
     
+    # 首先加载2025年至今的历史数据
+    historical_data = load_historical_data()
+    if historical_data and historical_data.get("alerts"):
+        for alert in historical_data["alerts"]:
+            if alert.get("exchange", "").lower() == exchange_name.lower():
+                alert_copy = alert.copy()
+                alert_copy["is_historical"] = True
+                history.append(alert_copy)
+                
+                # 统计
+                stats["total_alerts"] += 1
+                severity = alert.get("severity", "low")
+                if severity in stats:
+                    stats[severity] += 1
+                
+                # 时间范围
+                if stats["first_seen"] is None:
+                    stats["first_seen"] = alert.get("date", "2025-01")
+                stats["last_seen"] = alert.get("date", "2025-01")
+    
     for date in dates:
         data = load_intel(date)
         if not data:
