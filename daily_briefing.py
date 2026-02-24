@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-CEX 每日简报生成器 - 中文版
-用于定时任务生成每日简报（中文+URL引用）
+CEX 每日简报生成器 - 中文版（改进版）
+用于定时任务生成每日简报（中文+准确URL引用）
 """
 
 import os
@@ -20,14 +20,14 @@ def call_grok(prompt: str, tools: list) -> dict:
     }
     
     curl_cmd = [
-        "curl", "-s", "--max-time", "60",
+        "curl", "-s", "--max-time", "90",
         "https://api.x.ai/v1/responses",
         "-H", "Content-Type: application/json",
         "-H", f"Authorization: Bearer {api_key}",
         "-d", json.dumps(data, ensure_ascii=False)
     ]
     
-    result = subprocess.run(curl_cmd, capture_output=True, text=True, timeout=65)
+    result = subprocess.run(curl_cmd, capture_output=True, text=True, timeout=95)
     return json.loads(result.stdout) if result.returncode == 0 else {"error": result.stderr}
 
 def extract_text(response: dict) -> str:
@@ -42,57 +42,93 @@ def extract_text(response: dict) -> str:
         pass
     return ""
 
+def is_generic_url(url: str) -> bool:
+    """检查 URL 是否为通用链接（官网首页等）"""
+    if not url:
+        return True
+    
+    generic_patterns = [
+        "twitter.com/home",
+        "twitter.com",
+        "x.com",
+        "kucoin.com",
+        "binance.com",
+        "coinbase.com",
+        "bitget.com",
+        "kraken.com",
+        "okx.com",
+        "bybit.com",
+        "fma.gv.at",
+        "fintelegram.com",
+        "coindesk.com",
+        "cointelegraph.com"
+    ]
+    
+    url_lower = url.lower().rstrip('/')
+    for pattern in generic_patterns:
+        if url_lower == f"https://{pattern}" or url_lower == f"http://{pattern}" or url_lower == f"https://www.{pattern}" or url_lower == f"http://www.{pattern}":
+            return True
+    
+    return False
+
 def collect_daily_intel() -> dict:
     """采集每日情报（中文版）"""
     exchanges = ["Binance", "OKX", "Coinbase", "Bybit", "Bitget", "Kraken", "KuCoin"]
     today = datetime.now().strftime("%Y-%m-%d")
     
-    prompt = f"""生成一份综合的CEX交易所每日情报简报（用中文回复）。
+    prompt = f"""搜索并生成CEX交易所情报简报（用中文回复）。
 
 监控交易所: {', '.join(exchanges)}
 
 搜索内容（最近24-48小时）:
 1. 安全事件或黑客攻击
-2. 提现/存款问题
+2. 提现/存款问题  
 3. 监管行动或法律问题
 4. 服务中断或技术故障
 5. 诈骗警告或用户投诉
 6. 重大公告
 
-请用中文返回结构化JSON报告，包含URL引用：
+重要：对于每条情报，请提供：
+- 具体的新闻文章URL（如 https://coindesk.com/.../article-name）
+- 或具体的推文链接（如 https://twitter.com/username/status/1234567890）
+- 不要使用交易所官网主页作为URL
+- 如果没有找到具体的新闻链接，url字段留空
+
+返回格式（中文JSON）：
 {{
   "summary": "用中文写的整体摘要",
   "alerts": [
     {{
       "exchange": "交易所名称",
-      "severity": "critical|high|medium|low",
+      "severity": "critical|high|medium|low", 
       "title": "中文标题",
       "description": "中文详细描述",
-      "url": "相关新闻或推文链接"
+      "url": "具体的新闻或推文链接，如果没有则留空",
+      "source_name": "来源名称（如CoinDesk、The Block、X用户@username）"
     }}
   ],
   "exchange_status": {{
-    "Binance": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
-    "OKX": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
-    "Coinbase": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
-    "Bybit": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
-    "Bitget": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
-    "Kraken": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}},
-    "KuCoin": {{"status": "normal|warning|critical", "notes": "中文说明", "url": ""}}
+    "Binance": {{"status": "normal|warning|critical", "notes": "中文说明", "url": "具体链接或空"}},
+    "OKX": {{"status": "normal|warning|critical", "notes": "中文说明", "url": "具体链接或空"}},
+    "Coinbase": {{"status": "normal|warning|critical", "notes": "中文说明", "url": "具体链接或空"}},
+    "Bybit": {{"status": "normal|warning|critical", "notes": "中文说明", "url": "具体链接或空"}},
+    "Bitget": {{"status": "normal|warning|critical", "notes": "中文说明", "url": "具体链接或空"}},
+    "Kraken": {{"status": "normal|warning|critical", "notes": "中文说明", "url": "具体链接或空"}},
+    "KuCoin": {{"status": "normal|warning|critical", "notes": "中文说明", "url": "具体链接或空"}}
   }},
   "fintelegram_highlights": [
-    {{"content": "中文内容", "url": "原文链接"}}
+    {{"content": "中文内容", "url": "具体文章链接或空", "source_name": "来源"}}
   ],
   "sources": [
-    {{"name": "来源名称", "url": "链接"}}
+    {{"name": "来源名称", "url": "具体链接", "type": "news|twitter|official"}}
   ]
 }}
 
 注意：
-1. 所有文本字段必须用中文
-2. 尽可能为每条情报提供来源URL
-3. 如果没有某交易所的消息，status设为normal，notes为空
-4. 如果没有相关情报，返回空数组"""
+1. 所有文本必须用中文
+2. URL 必须是具体的新闻文章或推文链接，不要用官网主页
+3. 如果找不到具体来源，url 字段留空字符串""
+4. 优先使用知名新闻源：CoinDesk, The Block, Cointelegraph, Decrypt等"""
 
     print(f"🔍 正在采集 {today} 的情报...")
     response = call_grok(prompt, [{"type": "x_search"}, {"type": "web_search"}])
@@ -100,14 +136,27 @@ def collect_daily_intel() -> dict:
     
     try:
         data = json.loads(text) if text else {}
+        
+        # 过滤掉通用 URL
+        if data.get("alerts"):
+            for alert in data["alerts"]:
+                if is_generic_url(alert.get("url", "")):
+                    alert["url"] = ""
+        
+        if data.get("exchange_status"):
+            for ex, info in data["exchange_status"].items():
+                if is_generic_url(info.get("url", "")):
+                    info["url"] = ""
+        
         data["date"] = today
         data["collected_at"] = datetime.now().isoformat()
         return data
-    except:
+    except Exception as e:
+        print(f"解析错误: {e}")
         return {
             "date": today,
             "collected_at": datetime.now().isoformat(),
-            "error": "解析失败",
+            "error": str(e),
             "summary": "数据采集异常，请稍后重试",
             "alerts": [],
             "exchange_status": {ex: {"status": "normal", "notes": "", "url": ""} for ex in exchanges},
@@ -137,88 +186,9 @@ def save_intel(data: dict):
     print(f"💾 已保存: {filepath}")
     return filepath
 
-def format_briefing(data: dict) -> str:
-    """格式化为Discord消息（中文）"""
-    lines = []
-    lines.append("## 🎯 CEX 情报每日简报")
-    lines.append(f"📅 {data['date']}")
-    lines.append("")
-    
-    # 关键警报
-    alerts = data.get("alerts", [])
-    critical = [a for a in alerts if a.get("severity") == "critical"]
-    high = [a for a in alerts if a.get("severity") == "high"]
-    
-    if critical:
-        lines.append("🚨 **严重警报**")
-        for a in critical:
-            lines.append(f"🔴 **{a['exchange']}**: {a['title']}")
-            if a.get('url'):
-                lines.append(f"   [来源]({a['url']})")
-        lines.append("")
-    
-    if high:
-        lines.append("⚠️ **高风险事件**")
-        for a in high[:3]:
-            lines.append(f"🟠 **{a['exchange']}**: {a['title']}")
-            if a.get('url'):
-                lines.append(f"   [来源]({a['url']})")
-        lines.append("")
-    
-    # 交易所状态
-    lines.append("📊 **交易所状态**")
-    for ex, info in data.get("exchange_status", {}).items():
-        emoji = {"normal": "🟢", "warning": "🟡", "critical": "🔴"}.get(info.get("status"), "⚪")
-        notes = info.get("notes", "")
-        url = info.get("url", "")
-        if notes:
-            line = f"{emoji} **{ex}**: {notes[:60]}"
-            if url:
-                line += f" [🔗]({url})"
-            lines.append(line)
-        else:
-            lines.append(f"{emoji} **{ex}**: 正常")
-    
-    # FinTelegram
-    ft = data.get("fintelegram_highlights", [])
-    if ft:
-        lines.append("")
-        lines.append(f"🔍 **FinTelegram**: {len(ft)} 条关注")
-        for item in ft[:2]:
-            content = item.get("content", item) if isinstance(item, dict) else item
-            url = item.get("url", "") if isinstance(item, dict) else ""
-            line = f"   • {content[:80]}"
-            if url:
-                line += f" [🔗]({url})"
-            lines.append(line)
-    
-    # 摘要
-    if data.get("summary"):
-        lines.append("")
-        lines.append(f"💡 **摘要**: {data['summary'][:200]}")
-    
-    # 数据来源
-    sources = data.get("sources", [])
-    if sources:
-        lines.append("")
-        lines.append("📚 **数据来源**:")
-        for src in sources[:3]:
-            name = src.get("name", "未知")
-            url = src.get("url", "")
-            if url:
-                lines.append(f"   • [{name}]({url})")
-            else:
-                lines.append(f"   • {name}")
-    
-    lines.append("")
-    lines.append("—")
-    lines.append("💬 回复 `详情 [交易所名]` 获取更多信息")
-    
-    return "\n".join(lines)
-
 def generate_briefing():
     """生成每日简报主流程"""
-    print("🚀 CEX 每日简报生成器（中文版）")
+    print("🚀 CEX 每日简报生成器（中文版 - 改进URL质量）")
     print("=" * 50)
     
     # 采集今日情报
@@ -227,24 +197,17 @@ def generate_briefing():
     # 保存
     save_intel(data)
     
-    # 格式化输出
-    briefing = format_briefing(data)
-    
-    # 输出到文件
-    output_file = Path("/Users/neo/.openclaw/workspace-cex-intelligence/data/last_briefing.txt")
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(briefing)
-    
-    # 同时保存到 web 目录
-    web_output_file = Path("/Users/neo/.openclaw/workspace-cex-intelligence/web/data/last_briefing.txt")
-    with open(web_output_file, 'w', encoding='utf-8') as f:
-        f.write(briefing)
-    
+    # 输出摘要
     print("\n" + "=" * 50)
     print("✅ 简报生成完成")
-    print(briefing)
+    print(f"📅 日期: {data['date']}")
+    print(f"📊 警报数: {len(data.get('alerts', []))}")
     
-    return briefing
+    # 统计有URL的警报
+    alerts_with_url = [a for a in data.get('alerts', []) if a.get('url')]
+    print(f"🔗 有来源链接: {len(alerts_with_url)}")
+    
+    return data
 
 if __name__ == "__main__":
-    briefing = generate_briefing()
+    data = generate_briefing()

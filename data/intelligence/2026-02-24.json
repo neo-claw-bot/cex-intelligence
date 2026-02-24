@@ -1,4 +1,96 @@
 {
+  "summary": "过去24-48小时内，监控交易所整体运行正常，未发现安全事件、黑客攻击、服务中断或重大诈骗警告。主要情报集中在Binance的监管合规问题：多家媒体报道Binance内部调查发现17亿美元加密资金流向伊朗制裁实体，公司已解雇相关员工并声称大幅降低制裁暴露风险。其他交易所仅有零星用户投诉提现或支持问题，无系统性事件。Coinbase、OKX、Bybit、Bitget、Kraken、KuCoin无重大公告或故障报告。",
+  "alerts": [
+    {
+      "exchange": "Binance",
+      "severity": "high",
+      "title": "Binance员工发现17亿美元加密资金流向伊朗实体",
+      "description": "据纽约时报报道，Binance内部调查人员发现平台账户向伊朗相关实体转移了17亿美元加密货币，公司随后解雇或暂停了至少四名涉事员工。此事件引发对Binance制裁合规的关注。",
+      "url": "https://www.nytimes.com/2026/02/23/technology/binance-employees-iran-firings.html",
+      "source_name": "New York Times"
+    },
+    {
+      "exchange": "Binance",
+      "severity": "medium",
+      "title": "Binance声称制裁暴露风险下降97%",
+      "description": "Binance发布声明称，自2024年初以来，其对伊朗等制裁实体的直接暴露从交易量的0.284%降至0.009%，并强调加强合规措施。",
+      "url": "https://finance.yahoo.com/news/binance-claims-cut-sanctioned-exposure-101716322.html",
+      "source_name": "Yahoo Finance"
+    },
+    {
+      "exchange": "Kraken",
+      "severity": "low",
+      "title": "用户投诉Kraken资金冻结超过48小时",
+      "description": "X用户报告Kraken无预警冻结资金超过48小时，支持团队仅回复提升优先级，未进一步解决。",
+      "url": "https://x.com/TheRealMaxSteak/status/2025807951618085284",
+      "source_name": "X用户@TheRealMaxSteak"
+    }
+  ],
+  "exchange_status": {
+    "Binance": {
+      "status": "warning",
+      "notes": "监管报道显示资金涉嫌流向伊朗，已采取内部行动减少暴露",
+      "url": "https://www.nytimes.com/2026/02/23/technology/binance-employees-iran-firings.html"
+    },
+    "OKX": {
+      "status": "normal",
+      "notes": "无重大事件，用户零星钱包使用问题系个人操作失误",
+      "url": ""
+    },
+    "Coinbase": {
+      "status": "normal",
+      "notes": "无系统故障，Downdetector显示正常，用户个别提现投诉",
+      "url": ""
+    },
+    "Bybit": {
+      "status": "normal",
+      "notes": "无重大事件，个别用户活动奖励投诉",
+      "url": ""
+    },
+    "Bitget": {
+      "status": "normal",
+      "notes": "无相关报告",
+      "url": ""
+    },
+    "Kraken": {
+      "status": "warning",
+      "notes": "用户报告资金冻结问题，支持响应中",
+      "url": "https://x.com/TheRealMaxSteak/status/2025807951618085284"
+    },
+    "KuCoin": {
+      "status": "normal",
+      "notes": "无相关报告",
+      "url": ""
+    }
+  },
+  "fintelegram_highlights": [],
+  "sources": [
+    {
+      "name": "New York Times",
+      "url": "https://www.nytimes.com/2026/02/23/technology/binance-employees-iran-firings.html",
+      "type": "news"
+    },
+    {
+      "name": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/binance-claims-cut-sanctioned-exposure-101716322.html",
+      "type": "news"
+    },
+    {
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/business/2026/feb/23/binance-iran-fund-billions",
+      "type": "news"
+    },
+    {
+      "name": "Downdetector",
+      "url": "https://downdetector.com/status/coinbase",
+      "type": "news"
+    },
+    {
+      "name": "X用户@TheRealMaxSteak",
+      "url": "https://x.com/TheRealMaxSteak/status/2025807951618085284",
+      "type": "twitter"
+    }
+  ],
   "date": "2026-02-24",
-  "collected_at": "2026-02-24T01:54:16.178050"
+  "collected_at": "2026-02-24T09:35:09.327908"
 }
