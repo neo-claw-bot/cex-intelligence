@@ -1,12 +1,12 @@
 {
   "date": "2026-02-25",
-  "timestamp": "2026-02-25T15:33:27.299723",
-  "collected_at": "2026-02-25T15:33:27.299723",
+  "timestamp": "2026-02-25T16:53:51.915825",
+  "collected_at": "2026-02-25T16:53:51.915825",
   "summary": {
     "total_exchanges": 30,
-    "alerted_exchanges": 1,
+    "alerted_exchanges": 0,
     "critical_alerts": 0,
-    "high_alerts": 1
+    "high_alerts": 0
   },
   "exchanges": [
     {
@@ -19,13 +19,7 @@
       "exchange": "MEXC",
       "x_posts": [],
       "web_articles": [],
-      "alert_level": "high",
-      "fintelegram_reports": [
-        "2024-06: 冻结16万美元用户资产",
-        "2026-02: 影子支付通道曝光",
-        "2023-11: 爱沙尼亚牌照被吊销",
-        "2026-02: IP盗窃-盗用FinTelegram报道"
-      ]
+      "alert_level": "none"
     },
     {
       "exchange": "Gate",
@@ -209,44 +203,13 @@
     },
     {
       "name": "MEXC",
-      "status": "warning",
-      "severity": "high",
-      "alerts_count": 4,
-      "alerts": [
-        {
-          "type": "fintelegram",
-          "title": "2024-06: 冻结16万美元用户资产",
-          "severity": "high",
-          "description": "2024-06: 冻结16万美元用户资产",
-          "source": "FinTelegram"
-        },
-        {
-          "type": "fintelegram",
-          "title": "2026-02: 影子支付通道曝光",
-          "severity": "high",
-          "description": "2026-02: 影子支付通道曝光",
-          "source": "FinTelegram"
-        },
-        {
-          "type": "fintelegram",
-          "title": "2023-11: 爱沙尼亚牌照被吊销",
-          "severity": "high",
-          "description": "2023-11: 爱沙尼亚牌照被吊销",
-          "source": "FinTelegram"
-        },
-        {
-          "type": "fintelegram",
-          "title": "2026-02: IP盗窃-盗用FinTelegram报道",
-          "severity": "high",
-          "description": "2026-02: IP盗窃-盗用FinTelegram报道",
-          "source": "FinTelegram"
-        }
-      ],
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
       "twitter_sentiment": "neutral",
       "news_count": 0,
-      "sources": [
-        "FinTelegram"
-      ]
+      "sources": []
     },
     {
       "name": "Gate",
@@ -529,24 +492,6 @@
       "sources": []
     }
   ],
-  "key_alerts": [
-    {
-      "exchange": "MEXC",
-      "severity": "high",
-      "title": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
-      "description": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
-      "source": "FinTelegram",
-      "url": "https://fintelegram.com"
-    }
-  ],
-  "alerts": [
-    {
-      "exchange": "MEXC",
-      "severity": "high",
-      "title": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
-      "description": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
-      "source": "FinTelegram",
-      "url": "https://fintelegram.com"
-    }
-  ]
+  "key_alerts": [],
+  "alerts": []
 }

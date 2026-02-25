@@ -1,25 +1,20 @@
-🎯 CEX 每日简报 - 2026-02-25 【更新版】
+🎯 CEX 每日简报 - 2026-02-25
 
-📊 今日概况 (CER.live 全量监控)
-• 监控交易所: 30 个
-• 风险状况: ⚠️ 发现风险事件
-• Critical: 0 | High: 1
+📊 今日概况
+• 监控交易所: 7 个
+• 风险状况: ✅ 全部正常
+• Critical: 0 | High: 0
 
-🚨 关键警报:
-• MEXC: FinTelegram多篇负面曝光
-  - 2024-06: 冻结16万美元用户资产
-  - 2026-02: 影子支付通道(洗钱嫌疑)
-  - 2023-11: 爱沙尼亚牌照被吊销
-  - 2026-02: IP盗窃-盗用FinTelegram报道
+✅ 今日无重大风险事件
 
-🏛️ 重点交易所状态
-• MEXC: 🔴 HIGH (FinTelegram曝光)
-• Binance: NONE
-• Gate: NONE
-• Bitget: NONE
-• OKX: NONE
-• ... 等共30个交易所
+🏛️ 交易所状态
+• Binance: NONE (X:0 新闻:0)
+• OKX: NONE (X:0 新闻:0)
+• Coinbase: NONE (X:0 新闻:0)
+• Bybit: NONE (X:0 新闻:0)
+• Bitget: NONE (X:0 新闻:0)
+• Kraken: NONE (X:0 新闻:0)
+• KuCoin: NONE (X:0 新闻:0)
 
-⏰ 更新时间: 2026-02-25 15:42 CST
+⏰ 生成时间: 2026-02-25T14:28:27.035160
 🔗 详细报告: https://cex-intelligence-production.up.railway.app
-📊 数据来源: FinTelegram / X / Web
