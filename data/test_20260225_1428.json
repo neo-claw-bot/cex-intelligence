@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-02-25T14:28:27.035160",
+  "model": "grok-4-1-fast-reasoning",
+  "focus": "all",
+  "exchanges": [
+    {
+      "exchange": "Binance",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "OKX",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Coinbase",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Bybit",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Bitget",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Kraken",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "KuCoin",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    }
+  ],
+  "fintelegram": [],
+  "alerts": []
+}
