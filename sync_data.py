@@ -2,6 +2,7 @@
 """
 数据同步脚本
 将采集的数据同步到网站目录
+支持双时间字段: discovered_at (发现时间) 和 event_date (事件时间)
 """
 
 import json
@@ -36,21 +37,35 @@ def sync_data():
     today = datetime.now().strftime("%Y-%m-%d")
     target_file = web_data_dir / f"{today}.json"
     
-    # 使用独立的 key_alerts 作为警报列表（每个争议一个独立警报）
-    key_alerts = data.get("key_alerts", [])
+    # 当前发现时间（系统采集时间）
+    discovered_at = data.get("timestamp", datetime.now().isoformat())
     
-    # 为每个警报添加标签
-    for alert in key_alerts:
-        alert["tags"] = ["security", "fintelegram"]
-        # 确保有 url 字段（兼容旧模板）
-        if "url" not in alert and "urls" in alert:
-            alert["url"] = alert["urls"][0] if alert["urls"] else "https://fintelegram.com"
+    # 处理关键警报，添加双时间字段
+    key_alerts = []
+    for alert in data.get("key_alerts", []):
+        # 事件发生时间（从alert中获取，如果没有则使用发现时间）
+        event_date = alert.get("date", discovered_at[:10])
+        
+        processed_alert = {
+            "exchange": alert.get("exchange"),
+            "severity": alert.get("severity", "medium"),
+            "title": alert.get("title"),
+            "description": alert.get("description"),
+            "source": alert.get("source", "Unknown"),
+            "url": alert.get("url", ""),
+            "urls": alert.get("urls", []),
+            "event_date": event_date,  # 事件发生时间
+            "discovered_at": discovered_at,  # 我们发现的时间
+            "tags": alert.get("tags", ["security"])
+        }
+        key_alerts.append(processed_alert)
     
     # 转换数据格式以适应网站
     web_data = {
         "date": today,
-        "timestamp": data.get("timestamp", ""),
-        "collected_at": data.get("timestamp", ""),
+        "timestamp": discovered_at,
+        "collected_at": discovered_at,
+        "discovered_at": discovered_at,  # 发现时间（系统时间）
         "summary": {
             "total_exchanges": len(data.get("exchanges", [])),
             "alerted_exchanges": len([e for e in data.get("exchanges", []) if e.get("alert_level") != "none"]),
@@ -58,8 +73,8 @@ def sync_data():
             "high_alerts": len([a for a in key_alerts if a.get("severity") == "high"])
         },
         "exchanges": data.get("exchanges", []),
-        "key_alerts": key_alerts,  # 独立的警报列表
-        "alerts": key_alerts  # 网站模板使用这个字段
+        "key_alerts": key_alerts,
+        "alerts": key_alerts
     }
     
     # 保存到网站目录
@@ -68,6 +83,8 @@ def sync_data():
     
     print(f"✅ 数据已同步: {latest} → {target_file}")
     print(f"📊 独立警报数量: {len(key_alerts)}")
+    for a in key_alerts:
+        print(f"  - [事件:{a['event_date']}] [发现:{a['discovered_at'][:10]}] {a['title']}")
     
     # 同时复制到 site/ 目录
     site_data_dir = Path(__file__).parent / "site"

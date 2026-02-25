@@ -2,6 +2,7 @@
   "date": "2026-02-25",
   "timestamp": "2026-02-25T16:53:51.915825",
   "collected_at": "2026-02-25T16:53:51.915825",
+  "discovered_at": "2026-02-25T16:53:51.915825",
   "summary": {
     "total_exchanges": 30,
     "alerted_exchanges": 1,
@@ -255,52 +256,56 @@
       "exchange": "MEXC",
       "severity": "high",
       "title": "冻结16万美元用户资产",
-      "date": "2024-06",
       "description": "哈萨克斯坦用户账户被冻结，持有约16万美元USDT和ETH，MEXC以\"高风险活动\"为由拒绝恢复",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
+      "urls": [],
+      "event_date": "2024-06",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     },
     {
       "exchange": "MEXC",
       "severity": "high",
       "title": "影子支付通道(洗钱嫌疑)",
-      "date": "2026-02",
       "description": "使用罗马尼亚Finetix、法国Heuro、立陶宛Paytend多层壳公司进行\"三重掩码\"，规避AML监管",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
+      "urls": [],
+      "event_date": "2026-02",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     },
     {
       "exchange": "MEXC",
       "severity": "high",
       "title": "爱沙尼亚牌照被吊销",
-      "date": "2023-11",
       "description": "爱沙尼亚金融情报局(FIU)正式吊销MEXC Estonia OÜ运营牌照",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
+      "urls": [],
+      "event_date": "2023-11",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     },
     {
       "exchange": "MEXC",
       "severity": "medium",
       "title": "IP盗窃-盗用FinTelegram报道",
-      "date": "2026-02",
       "description": "系统性抓取并盗用FinTelegram调查报道发布在mexc.co网站，用于SEO和信誉提升",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud",
+      "urls": [],
+      "event_date": "2026-02",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     }
   ],
@@ -309,52 +314,56 @@
       "exchange": "MEXC",
       "severity": "high",
       "title": "冻结16万美元用户资产",
-      "date": "2024-06",
       "description": "哈萨克斯坦用户账户被冻结，持有约16万美元USDT和ETH，MEXC以\"高风险活动\"为由拒绝恢复",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
+      "urls": [],
+      "event_date": "2024-06",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     },
     {
       "exchange": "MEXC",
       "severity": "high",
       "title": "影子支付通道(洗钱嫌疑)",
-      "date": "2026-02",
       "description": "使用罗马尼亚Finetix、法国Heuro、立陶宛Paytend多层壳公司进行\"三重掩码\"，规避AML监管",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
+      "urls": [],
+      "event_date": "2026-02",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     },
     {
       "exchange": "MEXC",
       "severity": "high",
       "title": "爱沙尼亚牌照被吊销",
-      "date": "2023-11",
       "description": "爱沙尼亚金融情报局(FIU)正式吊销MEXC Estonia OÜ运营牌照",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
+      "urls": [],
+      "event_date": "2023-11",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     },
     {
       "exchange": "MEXC",
       "severity": "medium",
       "title": "IP盗窃-盗用FinTelegram报道",
-      "date": "2026-02",
       "description": "系统性抓取并盗用FinTelegram调查报道发布在mexc.co网站，用于SEO和信誉提升",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud",
+      "urls": [],
+      "event_date": "2026-02",
+      "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
-        "security",
-        "fintelegram"
+        "security"
       ]
     }
   ]
