@@ -1,20 +1,25 @@
 🎯 CEX 每日简报 - 2026-02-25
 
-📊 今日概况
-• 监控交易所: 7 个
+📊 今日概况 (CER.live 全量监控)
+• 监控交易所: 30 个 (CER.live全量)
 • 风险状况: ✅ 全部正常
 • Critical: 0 | High: 0
 
 ✅ 今日无重大风险事件
 
-🏛️ 交易所状态
-• Binance: NONE (X:0 新闻:0)
-• OKX: NONE (X:0 新闻:0)
-• Coinbase: NONE (X:0 新闻:0)
-• Bybit: NONE (X:0 新闻:0)
-• Bitget: NONE (X:0 新闻:0)
-• Kraken: NONE (X:0 新闻:0)
-• KuCoin: NONE (X:0 新闻:0)
+🏛️ 重点交易所状态
+• Binance: NONE
+• MEXC: NONE
+• Gate: NONE
+• Bitget: NONE
+• OKX: NONE
+• HTX: NONE
+• Bybit: NONE
+• Coinbase Exchange: NONE
+• CoinW: NONE
+• BitMart: NONE
+... 等共30个交易所
 
-⏰ 生成时间: 2026-02-25T14:28:27.035160
+⏰ 生成时间: 2026-02-25T16:53:51.915825
 🔗 详细报告: https://cex-intelligence-production.up.railway.app
+📊 GitHub: neo-claw-bot/cex-intelligence@bee38c6
