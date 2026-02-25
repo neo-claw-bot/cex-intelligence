@@ -63,17 +63,21 @@ def sync_data():
         }
         exchanges_list.append(exchange_data)
     
-    # 构建关键警报列表
-    key_alerts_list = []
-    for alert_text in data.get("key_alerts", []):
-        key_alerts_list.append({
-            "exchange": "MEXC" if "MEXC" in alert_text else "Unknown",
-            "severity": "high",
-            "title": alert_text,
-            "description": alert_text,
-            "source": "FinTelegram",
-            "url": "https://fintelegram.com"
-        })
+    # 构建关键警报列表（用于网站模板显示）
+    alerts_list = []
+    for e in data.get("exchanges", []):
+        if e.get("alert_level") in ["high", "critical"]:
+            # 构建警报详情
+            alert_info = {
+                "exchange": e.get("exchange"),
+                "severity": e.get("alert_level"),
+                "title": f"{e.get('exchange')} - {e.get('alert_level').upper()} 风险警报",
+                "description": "; ".join(e.get("fintelegram_reports", [])) if e.get("fintelegram_reports") else "发现风险信号",
+                "source": "FinTelegram" if e.get("fintelegram_reports") else "Monitor",
+                "url": "https://fintelegram.com",
+                "tags": ["security"] if e.get("fintelegram_reports") else []
+            }
+            alerts_list.append(alert_info)
     
     # 转换数据格式以适应网站
     web_data = {
@@ -88,8 +92,8 @@ def sync_data():
         },
         "exchanges": data.get("exchanges", []),
         "exchanges_list": exchanges_list,  # 模板使用这个格式
-        "key_alerts": key_alerts_list,  # 转换后的关键警报
-        "alerts": key_alerts_list  # dashboard使用
+        "key_alerts": alerts_list,  # 关键警报
+        "alerts": alerts_list  # 网站模板使用这个字段显示警报
     }
     
     # 保存到网站目录

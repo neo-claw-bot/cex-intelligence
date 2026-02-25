@@ -13,7 +13,13 @@
       "exchange": "MEXC",
       "x_posts": [],
       "web_articles": [],
-      "alert_level": "none"
+      "alert_level": "high",
+      "fintelegram_reports": [
+        "2024-06: 冻结16万美元用户资产",
+        "2026-02: 影子支付通道(洗钱嫌疑)",
+        "2023-11: 爱沙尼亚牌照被吊销",
+        "2026-02: IP盗窃-盗用FinTelegram报道"
+      ]
     },
     {
       "exchange": "Gate",
@@ -185,5 +191,15 @@
     }
   ],
   "fintelegram": [],
-  "alerts": []
+  "alerts": [],
+  "key_alerts": [
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "FinTelegram多篇负面曝光",
+      "description": "资产冻结/影子支付/监管违规",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com"
+    }
+  ]
 }

@@ -209,13 +209,44 @@
     },
     {
       "name": "MEXC",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
+      "status": "warning",
+      "severity": "high",
+      "alerts_count": 4,
+      "alerts": [
+        {
+          "type": "fintelegram",
+          "title": "2024-06: 冻结16万美元用户资产",
+          "severity": "high",
+          "description": "2024-06: 冻结16万美元用户资产",
+          "source": "FinTelegram"
+        },
+        {
+          "type": "fintelegram",
+          "title": "2026-02: 影子支付通道(洗钱嫌疑)",
+          "severity": "high",
+          "description": "2026-02: 影子支付通道(洗钱嫌疑)",
+          "source": "FinTelegram"
+        },
+        {
+          "type": "fintelegram",
+          "title": "2023-11: 爱沙尼亚牌照被吊销",
+          "severity": "high",
+          "description": "2023-11: 爱沙尼亚牌照被吊销",
+          "source": "FinTelegram"
+        },
+        {
+          "type": "fintelegram",
+          "title": "2026-02: IP盗窃-盗用FinTelegram报道",
+          "severity": "high",
+          "description": "2026-02: IP盗窃-盗用FinTelegram报道",
+          "source": "FinTelegram"
+        }
+      ],
       "twitter_sentiment": "neutral",
       "news_count": 0,
-      "sources": []
+      "sources": [
+        "FinTelegram"
+      ]
     },
     {
       "name": "Gate",
@@ -502,10 +533,26 @@
     {
       "exchange": "MEXC",
       "severity": "high",
-      "title": "FinTelegram多篇负面曝光",
-      "description": "资产冻结/影子支付/监管违规",
-      "source": "FinTelegram"
+      "title": "MEXC - HIGH 风险警报",
+      "description": "2024-06: 冻结16万美元用户资产; 2026-02: 影子支付通道(洗钱嫌疑); 2023-11: 爱沙尼亚牌照被吊销; 2026-02: IP盗窃-盗用FinTelegram报道",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com",
+      "tags": [
+        "security"
+      ]
     }
   ],
-  "alerts": []
+  "alerts": [
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "MEXC - HIGH 风险警报",
+      "description": "2024-06: 冻结16万美元用户资产; 2026-02: 影子支付通道(洗钱嫌疑); 2023-11: 爱沙尼亚牌照被吊销; 2026-02: IP盗窃-盗用FinTelegram报道",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com",
+      "tags": [
+        "security"
+      ]
+    }
+  ]
 }
