@@ -39,7 +39,14 @@ class ExchangeIntel:
 class GrokCollector:
     """Grok 情报采集器"""
     
-    EXCHANGES = ["Binance", "OKX", "Coinbase", "Bybit", "Bitget", "Kraken", "KuCoin"]
+    # CER.live 所有监控的交易所 (30个)
+    EXCHANGES = [
+        "Binance", "MEXC", "Gate", "Bitget", "OKX", "HTX", "Bybit",
+        "Coinbase Exchange", "CoinW", "BitMart", "Crypto.com", "DigiFinex",
+        "LBank", "Upbit", "Toobit", "WEEX", "P2B", "XT.COM", "Tapbit",
+        "Kraken", "KuCoin", "Bumba", "WhiteBIT", "Deribit", "OFZA",
+        "Flipster", "BingX", "HashKey Exchange", "Nami.Exchange", "Bitstamp"
+    ]
     
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key or os.getenv("XAI_API_KEY")
