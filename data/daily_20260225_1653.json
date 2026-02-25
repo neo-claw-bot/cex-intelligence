@@ -252,16 +252,16 @@
       "severity": "high",
       "title": "冻结16万美元用户资产",
       "date": "2024-06",
-      "description": "哈萨克斯坦用户账户被冻结，持有约16万美元USDT和ETH，MEXC以\"高风险活动\"为由拒绝恢复",
+      "description": "FinTelegram报道：哈萨克斯坦用户报告MEXC冻结其账户，持有约16万美元USDT和ETH，MEXC以高风险活动为由拒绝恢复。",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail"
     },
     {
       "exchange": "MEXC",
       "severity": "high",
-      "title": "影子支付通道(洗钱嫌疑)",
+      "title": "影子支付通道调查",
       "date": "2026-02",
-      "description": "使用罗马尼亚Finetix、法国Heuro、立陶宛Paytend多层壳公司进行\"三重掩码\"，规避AML监管",
+      "description": "FinTelegram调查：MEXC使用罗马尼亚Finetix、法国Heuro、立陶宛Paytend等实体处理SEPA转账，FinTelegram称此为三重掩码架构。",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix"
     },
@@ -270,16 +270,16 @@
       "severity": "high",
       "title": "爱沙尼亚牌照被吊销",
       "date": "2023-11",
-      "description": "爱沙尼亚金融情报局(FIU)正式吊销MEXC Estonia OÜ运营牌照",
+      "description": "FinTelegram报道：爱沙尼亚金融情报局(FIU)于2023年11月吊销MEXC Estonia OÜ的运营牌照。",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse"
     },
     {
       "exchange": "MEXC",
       "severity": "medium",
-      "title": "IP盗窃-盗用FinTelegram报道",
+      "title": "涉嫌盗用FinTelegram内容",
       "date": "2026-02",
-      "description": "系统性抓取并盗用FinTelegram调查报道发布在mexc.co网站，用于SEO和信誉提升",
+      "description": "FinTelegram指控：MEXC被指系统性抓取FinTelegram调查报道并发布在mexc.co网站。",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
     }
