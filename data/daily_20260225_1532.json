@@ -1,0 +1,189 @@
+{
+  "timestamp": "2026-02-25T15:33:27.299723",
+  "model": "grok-4-1-fast-reasoning",
+  "focus": "all",
+  "exchanges": [
+    {
+      "exchange": "Binance",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "MEXC",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Gate",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Bitget",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "OKX",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "HTX",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Bybit",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Coinbase Exchange",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "CoinW",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "BitMart",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Crypto.com",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "DigiFinex",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "LBank",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Upbit",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Toobit",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "WEEX",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "P2B",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "XT.COM",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Tapbit",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Kraken",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "KuCoin",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Bumba",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "WhiteBIT",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Deribit",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "OFZA",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Flipster",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "BingX",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "HashKey Exchange",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Nami.Exchange",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    },
+    {
+      "exchange": "Bitstamp",
+      "x_posts": [],
+      "web_articles": [],
+      "alert_level": "none"
+    }
+  ],
+  "fintelegram": [],
+  "alerts": []
+}
