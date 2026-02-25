@@ -185,7 +185,11 @@
                         </div>
                         <div>
                             <h3 class="font-semibold mb-1">每日摘要</h3>
-                            <p class="text-sm text-gray-300">{{ today_data.summary }}</p>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <p>📊 监控交易所: <strong>{{ today_data.summary.total_exchanges }}</strong> 个</p>
+                                <p>⚠️ 风险交易所: <strong>{{ today_data.summary.alerted_exchanges }}</strong> 个</p>
+                                <p>🚨 Critical: <strong>{{ today_data.summary.critical_alerts }}</strong> | High: <strong>{{ today_data.summary.high_alerts }}</strong></p>
+                            </div>
                         </div>
                     </div>
                     
