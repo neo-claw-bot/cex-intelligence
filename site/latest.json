@@ -21,10 +21,26 @@
       "web_articles": [],
       "alert_level": "high",
       "fintelegram_reports": [
-        "2024-06: 冻结16万美元用户资产",
-        "2026-02: 影子支付通道(洗钱嫌疑)",
-        "2023-11: 爱沙尼亚牌照被吊销",
-        "2026-02: IP盗窃-盗用FinTelegram报道"
+        {
+          "date": "2024-06",
+          "title": "冻结16万美元用户资产",
+          "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail"
+        },
+        {
+          "date": "2026-02",
+          "title": "影子支付通道(洗钱嫌疑)",
+          "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix"
+        },
+        {
+          "date": "2023-11",
+          "title": "爱沙尼亚牌照被吊销",
+          "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse"
+        },
+        {
+          "date": "2026-02",
+          "title": "IP盗窃-盗用FinTelegram报道",
+          "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
+        }
       ]
     },
     {
@@ -215,30 +231,62 @@
       "alerts": [
         {
           "type": "fintelegram",
-          "title": "2024-06: 冻结16万美元用户资产",
+          "title": {
+            "date": "2024-06",
+            "title": "冻结16万美元用户资产",
+            "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail"
+          },
           "severity": "high",
-          "description": "2024-06: 冻结16万美元用户资产",
+          "description": {
+            "date": "2024-06",
+            "title": "冻结16万美元用户资产",
+            "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail"
+          },
           "source": "FinTelegram"
         },
         {
           "type": "fintelegram",
-          "title": "2026-02: 影子支付通道(洗钱嫌疑)",
+          "title": {
+            "date": "2026-02",
+            "title": "影子支付通道(洗钱嫌疑)",
+            "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix"
+          },
           "severity": "high",
-          "description": "2026-02: 影子支付通道(洗钱嫌疑)",
+          "description": {
+            "date": "2026-02",
+            "title": "影子支付通道(洗钱嫌疑)",
+            "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix"
+          },
           "source": "FinTelegram"
         },
         {
           "type": "fintelegram",
-          "title": "2023-11: 爱沙尼亚牌照被吊销",
+          "title": {
+            "date": "2023-11",
+            "title": "爱沙尼亚牌照被吊销",
+            "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse"
+          },
           "severity": "high",
-          "description": "2023-11: 爱沙尼亚牌照被吊销",
+          "description": {
+            "date": "2023-11",
+            "title": "爱沙尼亚牌照被吊销",
+            "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse"
+          },
           "source": "FinTelegram"
         },
         {
           "type": "fintelegram",
-          "title": "2026-02: IP盗窃-盗用FinTelegram报道",
+          "title": {
+            "date": "2026-02",
+            "title": "IP盗窃-盗用FinTelegram报道",
+            "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
+          },
           "severity": "high",
-          "description": "2026-02: IP盗窃-盗用FinTelegram报道",
+          "description": {
+            "date": "2026-02",
+            "title": "IP盗窃-盗用FinTelegram报道",
+            "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
+          },
           "source": "FinTelegram"
         }
       ],
@@ -536,7 +584,13 @@
       "title": "MEXC - HIGH 风险警报",
       "description": "2024-06: 冻结16万美元用户资产; 2026-02: 影子支付通道(洗钱嫌疑); 2023-11: 爱沙尼亚牌照被吊销; 2026-02: IP盗窃-盗用FinTelegram报道",
       "source": "FinTelegram",
-      "url": "https://fintelegram.com",
+      "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
+      "urls": [
+        "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
+        "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
+        "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
+        "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
+      ],
       "tags": [
         "security"
       ]
@@ -549,7 +603,13 @@
       "title": "MEXC - HIGH 风险警报",
       "description": "2024-06: 冻结16万美元用户资产; 2026-02: 影子支付通道(洗钱嫌疑); 2023-11: 爱沙尼亚牌照被吊销; 2026-02: IP盗窃-盗用FinTelegram报道",
       "source": "FinTelegram",
-      "url": "https://fintelegram.com",
+      "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
+      "urls": [
+        "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
+        "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
+        "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
+        "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
+      ],
       "tags": [
         "security"
       ]

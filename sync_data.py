@@ -67,15 +67,33 @@ def sync_data():
     alerts_list = []
     for e in data.get("exchanges", []):
         if e.get("alert_level") in ["high", "critical"]:
+            # 处理 FinTelegram 报告（可能是字符串或字典）
+            reports = e.get("fintelegram_reports", [])
+            urls = []
+            descriptions = []
+            
+            for r in reports:
+                if isinstance(r, dict):
+                    descriptions.append(f"{r.get('date', '')}: {r.get('title', '')}")
+                    if r.get('url'):
+                        urls.append(r.get('url'))
+                else:
+                    descriptions.append(r)
+            
+            # 默认URL列表（如果reports中没有URL）
+            if not urls:
+                urls = ["https://fintelegram.com"]
+            
             # 构建警报详情
             alert_info = {
                 "exchange": e.get("exchange"),
                 "severity": e.get("alert_level"),
                 "title": f"{e.get('exchange')} - {e.get('alert_level').upper()} 风险警报",
-                "description": "; ".join(e.get("fintelegram_reports", [])) if e.get("fintelegram_reports") else "发现风险信号",
-                "source": "FinTelegram" if e.get("fintelegram_reports") else "Monitor",
-                "url": "https://fintelegram.com",
-                "tags": ["security"] if e.get("fintelegram_reports") else []
+                "description": "; ".join(descriptions) if descriptions else "发现风险信号",
+                "source": "FinTelegram" if reports else "Monitor",
+                "url": urls[0] if urls else "https://fintelegram.com",  # 主URL
+                "urls": urls,  # 所有URL列表
+                "tags": ["security"] if reports else []
             }
             alerts_list.append(alert_info)
     
