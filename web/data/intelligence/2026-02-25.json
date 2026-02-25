@@ -1,6 +1,7 @@
 {
   "date": "2026-02-25",
   "timestamp": "2026-02-25T15:33:27.299723",
+  "collected_at": "2026-02-25T15:33:27.299723",
   "summary": {
     "total_exchanges": 30,
     "alerted_exchanges": 1,
@@ -195,7 +196,357 @@
       "alert_level": "none"
     }
   ],
+  "exchanges_list": [
+    {
+      "name": "Binance",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "MEXC",
+      "status": "warning",
+      "severity": "high",
+      "alerts_count": 4,
+      "alerts": [
+        {
+          "type": "fintelegram",
+          "title": "2024-06: 冻结16万美元用户资产",
+          "severity": "high",
+          "description": "2024-06: 冻结16万美元用户资产",
+          "source": "FinTelegram"
+        },
+        {
+          "type": "fintelegram",
+          "title": "2026-02: 影子支付通道曝光",
+          "severity": "high",
+          "description": "2026-02: 影子支付通道曝光",
+          "source": "FinTelegram"
+        },
+        {
+          "type": "fintelegram",
+          "title": "2023-11: 爱沙尼亚牌照被吊销",
+          "severity": "high",
+          "description": "2023-11: 爱沙尼亚牌照被吊销",
+          "source": "FinTelegram"
+        },
+        {
+          "type": "fintelegram",
+          "title": "2026-02: IP盗窃-盗用FinTelegram报道",
+          "severity": "high",
+          "description": "2026-02: IP盗窃-盗用FinTelegram报道",
+          "source": "FinTelegram"
+        }
+      ],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": [
+        "FinTelegram"
+      ]
+    },
+    {
+      "name": "Gate",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Bitget",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "OKX",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "HTX",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Bybit",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Coinbase Exchange",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "CoinW",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "BitMart",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Crypto.com",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "DigiFinex",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "LBank",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Upbit",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Toobit",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "WEEX",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "P2B",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "XT.COM",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Tapbit",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Kraken",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "KuCoin",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Bumba",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "WhiteBIT",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Deribit",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "OFZA",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Flipster",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "BingX",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "HashKey Exchange",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Nami.Exchange",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    },
+    {
+      "name": "Bitstamp",
+      "status": "normal",
+      "severity": "none",
+      "alerts_count": 0,
+      "alerts": [],
+      "twitter_sentiment": "neutral",
+      "news_count": 0,
+      "sources": []
+    }
+  ],
   "key_alerts": [
-    "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规"
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
+      "description": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com"
+    }
+  ],
+  "alerts": [
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
+      "description": "🚨 MEXC: FinTelegram多篇负面曝光 - 资产冻结/影子支付/监管违规",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com"
+    }
   ]
 }

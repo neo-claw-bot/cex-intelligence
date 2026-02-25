@@ -26,6 +26,7 @@ def sync_data():
         return False
     
     latest = files[-1]
+    print(f"📂 读取源数据: {latest}")
     
     # 读取并转换格式
     with open(latest, 'r', encoding='utf-8') as f:
@@ -35,10 +36,50 @@ def sync_data():
     today = datetime.now().strftime("%Y-%m-%d")
     target_file = web_data_dir / f"{today}.json"
     
+    # 转换数据格式以适应网站模板
+    exchanges_list = []
+    for e in data.get("exchanges", []):
+        # 构建警报列表
+        alerts = []
+        if e.get("fintelegram_reports"):
+            for report in e.get("fintelegram_reports"):
+                alerts.append({
+                    "type": "fintelegram",
+                    "title": report,
+                    "severity": "high",
+                    "description": report,
+                    "source": "FinTelegram"
+                })
+        
+        exchange_data = {
+            "name": e.get("exchange"),
+            "status": "warning" if e.get("alert_level") in ["high", "critical"] else "normal",
+            "severity": e.get("alert_level", "none"),
+            "alerts_count": len(alerts),
+            "alerts": alerts,
+            "twitter_sentiment": "neutral",
+            "news_count": len(e.get("web_articles", [])),
+            "sources": ["FinTelegram"] if alerts else []
+        }
+        exchanges_list.append(exchange_data)
+    
+    # 构建关键警报列表
+    key_alerts_list = []
+    for alert_text in data.get("key_alerts", []):
+        key_alerts_list.append({
+            "exchange": "MEXC" if "MEXC" in alert_text else "Unknown",
+            "severity": "high",
+            "title": alert_text,
+            "description": alert_text,
+            "source": "FinTelegram",
+            "url": "https://fintelegram.com"
+        })
+    
     # 转换数据格式以适应网站
     web_data = {
         "date": today,
         "timestamp": data.get("timestamp", ""),
+        "collected_at": data.get("timestamp", ""),  # 模板使用这个字段
         "summary": {
             "total_exchanges": len(data.get("exchanges", [])),
             "alerted_exchanges": len([e for e in data.get("exchanges", []) if e.get("alert_level") != "none"]),
@@ -46,7 +87,9 @@ def sync_data():
             "high_alerts": len([e for e in data.get("exchanges", []) if e.get("alert_level") == "high"])
         },
         "exchanges": data.get("exchanges", []),
-        "key_alerts": data.get("key_alerts", [])
+        "exchanges_list": exchanges_list,  # 模板使用这个格式
+        "key_alerts": key_alerts_list,  # 转换后的关键警报
+        "alerts": key_alerts_list  # dashboard使用
     }
     
     # 保存到网站目录
