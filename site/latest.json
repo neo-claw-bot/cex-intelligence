@@ -6,7 +6,7 @@
     "total_exchanges": 30,
     "alerted_exchanges": 1,
     "critical_alerts": 0,
-    "high_alerts": 1
+    "high_alerts": 3
   },
   "exchanges": [
     {
@@ -39,6 +39,44 @@
         {
           "date": "2026-02",
           "title": "IP盗窃-盗用FinTelegram报道",
+          "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
+        }
+      ],
+      "alerts": [
+        {
+          "exchange": "MEXC",
+          "severity": "high",
+          "title": "冻结16万美元用户资产",
+          "date": "2024-06",
+          "description": "哈萨克斯坦用户账户被冻结，持有约16万美元USDT和ETH，MEXC以\"高风险活动\"为由拒绝恢复",
+          "source": "FinTelegram",
+          "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail"
+        },
+        {
+          "exchange": "MEXC",
+          "severity": "high",
+          "title": "影子支付通道(洗钱嫌疑)",
+          "date": "2026-02",
+          "description": "使用罗马尼亚Finetix、法国Heuro、立陶宛Paytend多层壳公司进行\"三重掩码\"，规避AML监管",
+          "source": "FinTelegram",
+          "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix"
+        },
+        {
+          "exchange": "MEXC",
+          "severity": "high",
+          "title": "爱沙尼亚牌照被吊销",
+          "date": "2023-11",
+          "description": "爱沙尼亚金融情报局(FIU)正式吊销MEXC Estonia OÜ运营牌照",
+          "source": "FinTelegram",
+          "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse"
+        },
+        {
+          "exchange": "MEXC",
+          "severity": "medium",
+          "title": "IP盗窃-盗用FinTelegram报道",
+          "date": "2026-02",
+          "description": "系统性抓取并盗用FinTelegram调查报道发布在mexc.co网站，用于SEO和信誉提升",
+          "source": "FinTelegram",
           "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
         }
       ]
@@ -212,387 +250,57 @@
       "alert_level": "none"
     }
   ],
-  "exchanges_list": [
-    {
-      "name": "Binance",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "MEXC",
-      "status": "warning",
-      "severity": "high",
-      "alerts_count": 4,
-      "alerts": [
-        {
-          "type": "fintelegram",
-          "title": {
-            "date": "2024-06",
-            "title": "冻结16万美元用户资产",
-            "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail"
-          },
-          "severity": "high",
-          "description": {
-            "date": "2024-06",
-            "title": "冻结16万美元用户资产",
-            "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail"
-          },
-          "source": "FinTelegram"
-        },
-        {
-          "type": "fintelegram",
-          "title": {
-            "date": "2026-02",
-            "title": "影子支付通道(洗钱嫌疑)",
-            "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix"
-          },
-          "severity": "high",
-          "description": {
-            "date": "2026-02",
-            "title": "影子支付通道(洗钱嫌疑)",
-            "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix"
-          },
-          "source": "FinTelegram"
-        },
-        {
-          "type": "fintelegram",
-          "title": {
-            "date": "2023-11",
-            "title": "爱沙尼亚牌照被吊销",
-            "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse"
-          },
-          "severity": "high",
-          "description": {
-            "date": "2023-11",
-            "title": "爱沙尼亚牌照被吊销",
-            "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse"
-          },
-          "source": "FinTelegram"
-        },
-        {
-          "type": "fintelegram",
-          "title": {
-            "date": "2026-02",
-            "title": "IP盗窃-盗用FinTelegram报道",
-            "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
-          },
-          "severity": "high",
-          "description": {
-            "date": "2026-02",
-            "title": "IP盗窃-盗用FinTelegram报道",
-            "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
-          },
-          "source": "FinTelegram"
-        }
-      ],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": [
-        "FinTelegram"
-      ]
-    },
-    {
-      "name": "Gate",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Bitget",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "OKX",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "HTX",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Bybit",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Coinbase Exchange",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "CoinW",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "BitMart",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Crypto.com",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "DigiFinex",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "LBank",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Upbit",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Toobit",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "WEEX",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "P2B",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "XT.COM",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Tapbit",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Kraken",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "KuCoin",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Bumba",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "WhiteBIT",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Deribit",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "OFZA",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Flipster",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "BingX",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "HashKey Exchange",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Nami.Exchange",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    },
-    {
-      "name": "Bitstamp",
-      "status": "normal",
-      "severity": "none",
-      "alerts_count": 0,
-      "alerts": [],
-      "twitter_sentiment": "neutral",
-      "news_count": 0,
-      "sources": []
-    }
-  ],
   "key_alerts": [
     {
       "exchange": "MEXC",
       "severity": "high",
-      "title": "MEXC - HIGH 风险警报",
-      "description": "2024-06: 冻结16万美元用户资产; 2026-02: 影子支付通道(洗钱嫌疑); 2023-11: 爱沙尼亚牌照被吊销; 2026-02: IP盗窃-盗用FinTelegram报道",
+      "title": "冻结16万美元用户资产",
+      "date": "2024-06",
+      "description": "哈萨克斯坦用户账户被冻结，持有约16万美元USDT和ETH，MEXC以\"高风险活动\"为由拒绝恢复",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
-      "urls": [
-        "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
-        "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
-        "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
-        "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
-      ],
       "tags": [
-        "security"
+        "security",
+        "fintelegram"
+      ]
+    },
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "影子支付通道(洗钱嫌疑)",
+      "date": "2026-02",
+      "description": "使用罗马尼亚Finetix、法国Heuro、立陶宛Paytend多层壳公司进行\"三重掩码\"，规避AML监管",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
+      "tags": [
+        "security",
+        "fintelegram"
+      ]
+    },
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "爱沙尼亚牌照被吊销",
+      "date": "2023-11",
+      "description": "爱沙尼亚金融情报局(FIU)正式吊销MEXC Estonia OÜ运营牌照",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
+      "tags": [
+        "security",
+        "fintelegram"
+      ]
+    },
+    {
+      "exchange": "MEXC",
+      "severity": "medium",
+      "title": "IP盗窃-盗用FinTelegram报道",
+      "date": "2026-02",
+      "description": "系统性抓取并盗用FinTelegram调查报道发布在mexc.co网站，用于SEO和信誉提升",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud",
+      "tags": [
+        "security",
+        "fintelegram"
       ]
     }
   ],
@@ -600,18 +308,53 @@
     {
       "exchange": "MEXC",
       "severity": "high",
-      "title": "MEXC - HIGH 风险警报",
-      "description": "2024-06: 冻结16万美元用户资产; 2026-02: 影子支付通道(洗钱嫌疑); 2023-11: 爱沙尼亚牌照被吊销; 2026-02: IP盗窃-盗用FinTelegram报道",
+      "title": "冻结16万美元用户资产",
+      "date": "2024-06",
+      "description": "哈萨克斯坦用户账户被冻结，持有约16万美元USDT和ETH，MEXC以\"高风险活动\"为由拒绝恢复",
       "source": "FinTelegram",
       "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
-      "urls": [
-        "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
-        "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
-        "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
-        "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud"
-      ],
       "tags": [
-        "security"
+        "security",
+        "fintelegram"
+      ]
+    },
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "影子支付通道(洗钱嫌疑)",
+      "date": "2026-02",
+      "description": "使用罗马尼亚Finetix、法国Heuro、立陶宛Paytend多层壳公司进行\"三重掩码\"，规避AML监管",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com/compliance-alert-the-mexc-euro-asian-shadow-rail-with-french-heuro-romanian-finetix",
+      "tags": [
+        "security",
+        "fintelegram"
+      ]
+    },
+    {
+      "exchange": "MEXC",
+      "severity": "high",
+      "title": "爱沙尼亚牌照被吊销",
+      "date": "2023-11",
+      "description": "爱沙尼亚金融情报局(FIU)正式吊销MEXC Estonia OÜ运营牌照",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
+      "tags": [
+        "security",
+        "fintelegram"
+      ]
+    },
+    {
+      "exchange": "MEXC",
+      "severity": "medium",
+      "title": "IP盗窃-盗用FinTelegram报道",
+      "date": "2026-02",
+      "description": "系统性抓取并盗用FinTelegram调查报道发布在mexc.co网站，用于SEO和信誉提升",
+      "source": "FinTelegram",
+      "url": "https://fintelegram.com/content-piracy-brand-hijacking-mexcs-systematic-ip-theft-the-finetix-fraud",
+      "tags": [
+        "security",
+        "fintelegram"
       ]
     }
   ]

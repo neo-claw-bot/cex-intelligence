@@ -119,22 +119,16 @@
                             </div>
                             <h3 class="font-semibold mb-1">{{ alert.title }}</h3>
                             <p class="text-sm text-gray-400 mb-2">{{ alert.description }}</p>
-                            {% if alert.urls and alert.urls|length > 0 %}
-                            <div class="flex flex-wrap items-center gap-2 mb-2">
-                                <span class="text-xs text-gray-500">引用来源:</span>
-                                {% for url in alert.urls %}
-                                <a href="{{ url }}" target="_blank" class="text-xs text-blue-400 hover:text-blue-300 underline" title="{{ url }}">
-                                    [{{ loop.index }}]
-                                </a>
-                                {% endfor %}
-                            </div>
-                            {% elif alert.url %}
-                            <div class="mb-2">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs text-gray-500">
+                                    <i class="far fa-calendar-alt mr-1"></i>{{ alert.date }}
+                                </span>
+                                {% if alert.url %}
                                 <a href="{{ alert.url }}" target="_blank" class="text-xs text-blue-400 hover:text-blue-300 underline">
-                                    <i class="fas fa-external-link-alt mr-1"></i>查看来源
+                                    <i class="fas fa-external-link-alt mr-1"></i>FinTelegram原文
                                 </a>
+                                {% endif %}
                             </div>
-                            {% endif %}
                             {% if alert.tags %}
                             <div class="flex flex-wrap gap-1 mt-2">
                                 {% for tag in alert.tags %}
