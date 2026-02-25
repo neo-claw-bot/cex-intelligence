@@ -1,14 +1,7 @@
 {
-  "date": "2026-02-26",
   "timestamp": "2026-02-26T01:00:48.760224",
-  "collected_at": "2026-02-26T01:00:48.760224",
-  "discovered_at": "2026-02-26T01:00:48.760224",
-  "summary": {
-    "total_exchanges": 30,
-    "alerted_exchanges": 0,
-    "critical_alerts": 0,
-    "high_alerts": 0
-  },
+  "model": "grok-4-1-fast-reasoning",
+  "focus": "all",
   "exchanges": [
     {
       "exchange": "Binance",
@@ -191,6 +184,6 @@
       "alert_level": "none"
     }
   ],
-  "key_alerts": [],
+  "fintelegram": [],
   "alerts": []
 }
