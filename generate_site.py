@@ -318,7 +318,7 @@ briefing_text = f"""🎯 CEX 每日简报 - {datetime.now().strftime('%Y-%m-%d')
 {chr(10).join([f"• {e.get('exchange')}: {e.get('alert_level', 'none').upper()} (X:{len(e.get('x_posts',[]))} 新闻:{len(e.get('web_articles',[]))})" for e in exchanges])}
 
 ⏰ 生成时间: {timestamp}
-🔗 详细报告: https://cex-intelligence.up.railway.app
+🔗 详细报告: https://cex-intelligence-production.up.railway.app
 """
 
 with open('site/briefing.txt', 'w', encoding='utf-8') as f:

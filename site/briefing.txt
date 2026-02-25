@@ -21,5 +21,5 @@
 • ... 等共30个交易所
 
 ⏰ 更新时间: 2026-02-25 15:42 CST
-🔗 详细报告: https://cex-intelligence.up.railway.app
+🔗 详细报告: https://cex-intelligence-production.up.railway.app
 📊 数据来源: FinTelegram / X / Web
