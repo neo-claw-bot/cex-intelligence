@@ -88,6 +88,8 @@
         .status-normal { background: #10b981; }
         .status-warning { background: #f59e0b; }
         .status-danger { background: #ef4444; }
+        .status-high { background: #f97316; }
+        .status-critical { background: #ef4444; }
         
         .content-header {
             height: var(--header-height);
@@ -189,10 +191,17 @@
             
             <div class="exchange-submenu">
                 {% for exchange in cer_live_exchanges %}
+                {% set status = exchange_status.get(exchange, 'none') %}
                 <a href="{{ url_for('exchange_detail', exchange_name=exchange) }}" 
                    class="exchange-item {% if request.view_args and request.view_args.get('exchange_name') == exchange %}text-blue-400{% endif %}">
                     <span>{{ exchange }}</span>
-                    <span class="status-dot status-normal"></span>
+                    <span class="status-dot 
+                        {% if status == 'critical' %}bg-red-500 animate-pulse
+                        {% elif status == 'high' %}bg-orange-500
+                        {% elif status == 'medium' %}bg-yellow-500
+                        {% elif status == 'low' %}bg-blue-500
+                        {% else %}bg-green-500{% endif %}">
+                    </span>
                 </a>
                 {% endfor %}
             </div>
