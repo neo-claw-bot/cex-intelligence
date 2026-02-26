@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}{{ exchange_name }} - 交易所详情{% endblock %}
+{% block header_title %}{{ exchange_name }}{% endblock %}
+
+{% block content %}
+<!-- 交易所头部信息 -->
+<div class="card mb-6">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-xl {{ get_severity_color(current_status) }} flex items-center justify-center text-2xl font-bold">
+                {{ exchange_name[0] }}
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold">{{ exchange_name }}</h2>
+                <div class="flex items-center gap-4 mt-2">
+                    <span class="px-3 py-1 rounded-full text-sm {{ get_severity_color(current_status) }}">
+                        {{ get_severity_badge(current_status) }}
+                    </span>
+                    <span class="text-sm text-gray-400">
+                        <i class="fas fa-chart-line mr-1"></i>CER.live 监控中
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-right">
+            <div class="grid grid-cols-3 gap-6">
+                <div>
+                    <p class="text-2xl font-bold">{{ stats.total_alerts }}</p>
+                    <p class="text-sm text-gray-400">历史警报</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-orange-400">{{ stats.high_alerts }}</p>
+                    <p class="text-sm text-gray-400">高危警报</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-red-400">{{ stats.critical_alerts }}</p>
+                    <p class="text-sm text-gray-400">严重警报</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- 左侧：时间线 -->
+    <div class="lg:col-span-2">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+                <i class="fas fa-history text-blue-400"></i>
+                争议事件时间线
+            </h3>
+            {% if alerts %}
+            <span class="text-sm text-gray-400">共 {{ alerts|length }} 个事件</span>
+            {% endif %}
+        </div>
+        
+        {% if alerts %}
+        <div class="card">
+            {% for alert in alerts %}
+            <div class="timeline-item severity-{{ alert.severity }} {% if loop.last %}pb-0{% endif %}">
+                <div class="flex items-start justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 rounded text-xs {{ get_severity_color(alert.severity) }}">
+                            {{ get_severity_badge(alert.severity) }}
+                        </span>
+                        <span class="text-sm text-gray-400">
+                            <i class="far fa-calendar-alt mr-1"></i>{{ alert.date }}
+                        </span>
+                        {% if alert.event_date and alert.event_date != alert.date %}
+                        <span class="text-xs text-orange-400">
+                            <i class="fas fa-history mr-1"></i>事件: {{ alert.event_date }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    {% if alert.url %}
+                    <a href="{{ alert.url }}" target="_blank" class="text-xs text-blue-400 hover:underline">
+                        <i class="fas fa-external-link-alt mr-1"></i>查看来源
+                    </a>
+                    {% endif %}
+                </div>
+                
+                <h4 class="font-semibold mb-2">{{ alert.title }}</h4>
+                <p class="text-sm text-gray-300 leading-relaxed">{{ alert.description }}</p>
+                
+                {% if alert.source %}
+                <div class="mt-2 flex items-center gap-2">
+                    <span class="text-xs text-gray-500">
+                        <i class="fas fa-source mr-1"></i>来源: {{ alert.source }}
+                    </span>
+                    {% if alert.discovered_at %}
+                    <span class="text-xs text-gray-500">
+                        <i class="fas fa-radar mr-1"></i>发现: {{ alert.discovered_at[:10] }}
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card text-center py-12">
+            <i class="fas fa-check-circle text-green-400 text-4xl mb-3"></i>
+            <p class="text-gray-400">该交易所近期没有争议事件</p>
+            <p class="text-sm text-gray-500 mt-1">历史记录 clean</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- 右侧：相关信息 -->
+    <div>
+        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+            <i class="fas fa-info-circle text-blue-400"></i>
+            相关信息
+        </h3>
+        
+        <div class="card mb-4">
+            <h4 class="font-semibold mb-3">风险等级说明</h4>
+            <div class="space-y-2 text-sm">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                    <span>严重 (Critical) - 需要立即关注</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-orange-500"></span>
+                    <span>高危 (High) - 建议密切关注</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                    <span>中等 (Medium) - 持续观察</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                    <span>低危 (Low) - 常规注意</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    <span>正常 (None) - 无风险信号</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h4 class="font-semibold mb-3">监控信息</h4>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-gray-400">数据来源</span>
+                    <span>FinTelegram / X / Web</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">更新频率</span>
+                    <span>每日 09:00 CST</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">监控天数</span>
+                    <span>{{ stats.monitoring_days or '30+' }} 天</span>
+                </div>
+                {% if stats.last_alert %}
+                <div class="flex justify-between">
+                    <span class="text-gray-400">最近警报</span>
+                    <span>{{ stats.last_alert }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}所有警报 - CEX Intelligence{% endblock %}
+{% block header_title %}所有警报{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-4">
+        <h3 class="text-lg font-semibold">历史警报记录</h3>
+        <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-sm">
+            共 {{ alerts|length }} 条
+        </span>
+    </div>
+    
+    <!-- 筛选器 -->
+    <div class="flex items-center gap-2">
+        <select class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm">
+            <option value="">所有交易所</option>
+            {% for exchange in cer_live_exchanges %}
+            <option value="{{ exchange }}">{{ exchange }}</option>
+            {% endfor %}
+        </select>
+        
+        <select class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm">
+            <option value="">所有等级</option>
+            <option value="critical">严重</option>
+            <option value="high">高危</option>
+            <option value="medium">中等</option>
+        </select>
+    </div>
+</div>
+
+{% if alerts %}
+<div class="space-y-3">
+    {% for alert in alerts %}
+    <div class="card severity-{{ alert.severity }}">
+        <div class="flex items-start gap-4">
+            <!-- 左侧：严重程度 -->
+            <div class="flex-shrink-0">
+                <span class="px-3 py-1 rounded text-sm {{ get_severity_color(alert.severity) }}">
+                    {{ get_severity_badge(alert.severity) }}
+                </span>
+            </div>
+            
+            <!-- 中间：内容 -->
+            <div class="flex-1">
+                <div class="flex items-center gap-3 mb-2">
+                    <a href="{{ url_for('exchange_detail', exchange_name=alert.exchange) }}" 
+                       class="text-lg font-semibold hover:text-blue-400 transition">
+                        {{ alert.exchange }}
+                    </a>
+                    <span class="text-sm text-gray-400">
+                        <i class="far fa-calendar-alt mr-1"></i>{{ alert.date }}
+                    </span>
+                    {% if alert.event_date and alert.event_date != alert.date %}
+                    <span class="text-xs text-orange-400">
+                        <i class="fas fa-history mr-1"></i>事件: {{ alert.event_date }}
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <h4 class="font-medium mb-2">{{ alert.title }}</h4>
+                <p class="text-sm text-gray-300 leading-relaxed">{{ alert.description }}</p>
+                
+                <div class="mt-3 flex items-center gap-4 text-sm">
+                    {% if alert.source %}
+                    <span class="text-gray-500">
+                        <i class="fas fa-source mr-1"></i>来源: {{ alert.source }}
+                    </span>
+                    {% endif %}
+                    {% if alert.url %}
+                    <a href="{{ alert.url }}" target="_blank" class="text-blue-400 hover:underline">
+                        <i class="fas fa-external-link-alt mr-1"></i>查看原文
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- 分页 -->
+<div class="mt-6 flex justify-center">
+    <div class="flex items-center gap-2">
+        <button class="px-3 py-1 bg-gray-800 rounded-lg text-sm hover:bg-gray-700">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="px-3 py-1 bg-blue-600 rounded-lg text-sm">1</span>
+        <button class="px-3 py-1 bg-gray-800 rounded-lg text-sm hover:bg-gray-700">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+
+{% else %}
+<div class="card text-center py-16">
+    <i class="fas fa-shield-alt text-green-400 text-5xl mb-4"></i>
+    <h3 class="text-xl font-semibold mb-2">暂无警报记录</h3>
+    <p class="text-gray-400">近期所有监控交易所运行平稳</p>
+</div>
+{% endif %}
+{% endblock %}

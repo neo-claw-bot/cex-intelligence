@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CEX Intelligence{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --header-height: 60px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            border-right: 1px solid #334155;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            background: #0a0e1a;
+        }
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid #334155;
+        }
+        .sidebar-menu {
+            padding: 10px 0;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .menu-item:hover, .menu-item.active {
+            background: rgba(59, 130, 246, 0.1);
+            color: #fff;
+            border-left-color: #3b82f6;
+        }
+        .menu-item i {
+            width: 24px;
+            margin-right: 12px;
+        }
+        .exchange-submenu {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .exchange-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px 8px 50px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .exchange-item:hover {
+            background: rgba(59, 130, 246, 0.05);
+            color: #fff;
+        }
+        .exchange-item .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .status-normal { background: #10b981; }
+        .status-warning { background: #f59e0b; }
+        .status-danger { background: #ef4444; }
+        
+        .content-header {
+            height: var(--header-height);
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .card-hover:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            transition: all 0.2s;
+        }
+        .severity-critical { border-left: 4px solid #ef4444; }
+        .severity-high { border-left: 4px solid #f97316; }
+        .severity-medium { border-left: 4px solid #eab308; }
+        .severity-low { border-left: 4px solid #3b82f6; }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            padding-bottom: 30px;
+            border-left: 2px solid #334155;
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #3b82f6;
+        }
+        .timeline-item.severity-critical::before { background: #ef4444; }
+        .timeline-item.severity-high::before { background: #f97316; }
+        .timeline-item.severity-medium::before { background: #eab308; }
+        
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        {% block extra_css %}{% endblock %}
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-white"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg">CEX Intelligence</h1>
+                    <p class="text-xs text-gray-400">交易所情报监控</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="{{ url_for('dashboard') }}" class="menu-item {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <a href="{{ url_for('alerts_list') }}" class="menu-item {% if request.endpoint == 'alerts_list' %}active{% endif %}">
+                <i class="fas fa-bell"></i>
+                <span>所有警报</span>
+            </a>
+            
+            <div class="mt-6 mb-2 px-5 text-xs font-semibold text-gray-500 uppercase">
+                监控交易所 ({{ cer_live_exchanges|length }})
+            </div>
+            
+            <div class="exchange-submenu">
+                {% for exchange in cer_live_exchanges %}
+                <a href="{{ url_for('exchange_detail', exchange_name=exchange) }}" 
+                   class="exchange-item {% if request.view_args and request.view_args.get('exchange_name') == exchange %}text-blue-400{% endif %}">
+                    <span>{{ exchange }}</span>
+                    <span class="status-dot status-normal"></span>
+                </a>
+                {% endfor %}
+            </div>
+        </nav>
+    </aside>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <header class="content-header">
+            <div class="flex items-center gap-4">
+                <h2 class="text-xl font-semibold">{% block header_title %}Dashboard{% endblock %}</h2>
+                <span class="text-sm text-gray-400">{{ now.strftime('%Y-%m-%d %H:%M') if now else '' }}</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-400">
+                    <i class="fas fa-user-circle mr-1"></i>监控中
+                </span>
+                <a href="{{ url_for('logout') }}" class="text-gray-400 hover:text-red-400 transition">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </header>
+        
+        <div class="p-6">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

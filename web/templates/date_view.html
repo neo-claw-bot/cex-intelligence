@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}{{ date }} - 每日简报{% endblock %}
+{% block header_title %}{{ date }} 每日简报{% endblock %}
+
+{% block content %}
+<!-- 日期选择器 -->
+<div class="card mb-6">
+    <div class="flex items-center gap-4 overflow-x-auto pb-2">
+        <span class="text-sm text-gray-400 flex-shrink-0">历史日期:</span>
+        {% for d in dates[:15] %}
+        <a href="{{ url_for('date_view', date_str=d) }}" 
+           class="px-4 py-2 rounded-lg text-sm flex-shrink-0 {% if d == date %}bg-blue-600 text-white{% else %}bg-gray-800 text-gray-300 hover:bg-gray-700{% endif %}">
+            {{ d }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% if data %}
+<!-- 摘要卡片 -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+    <div class="card">
+        <p class="text-sm text-gray-400">监控交易所</p>
+        <p class="text-2xl font-bold">{{ data.summary.total_exchanges }}</p>
+    </div>
+    <div class="card">
+        <p class="text-sm text-gray-400">风险交易所</p>
+        <p class="text-2xl font-bold {% if data.summary.alerted_exchanges > 0 %}text-orange-400{% else %}text-green-400{% endif %}">
+            {{ data.summary.alerted_exchanges }}
+        </p>
+    </div>
+    <div class="card">
+        <p class="text-sm text-gray-400">高危警报</p>
+        <p class="text-2xl font-bold text-orange-400">{{ data.summary.high_alerts }}</p>
+    </div>
+    <div class="card">
+        <p class="text-sm text-gray-400">严重警报</p>
+        <p class="text-2xl font-bold text-red-400">{{ data.summary.critical_alerts }}</p>
+    </div>
+</div>
+
+<!-- 警报详情 -->
+{% if data.alerts %}
+<div class="mb-6">
+    <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+        <i class="fas fa-bell text-orange-400"></i>
+        风险警报 ({{ data.alerts|length }})
+    </h3>
+    
+    <div class="space-y-3">
+        {% for alert in data.alerts %}
+        <div class="card severity-{{ alert.severity }}">
+            <div class="flex items-start gap-4">
+                <span class="px-2 py-1 rounded text-xs {{ get_severity_color(alert.severity) }} flex-shrink-0">
+                    {{ get_severity_badge(alert.severity) }}
+                </span>
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-2">
+                        <a href="{{ url_for('exchange_detail', exchange_name=alert.exchange) }}" 
+                           class="font-semibold hover:text-blue-400">
+                            {{ alert.exchange }}
+                        </a>
+                        {% if alert.event_date %}
+                        <span class="text-xs text-orange-400">
+                            <i class="fas fa-history mr-1"></i>事件: {{ alert.event_date }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    <h4 class="font-medium mb-1">{{ alert.title }}</h4>
+                    <p class="text-sm text-gray-300">{{ alert.description }}</p>
+                    {% if alert.url %}
+                    <div class="mt-2">
+                        <a href="{{ alert.url }}" target="_blank" class="text-xs text-blue-400 hover:underline">
+                            <i class="fas fa-external-link-alt mr-1"></i>查看来源
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- 所有交易所状态 -->
+<div>
+    <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+        <i class="fas fa-building text-blue-400"></i>
+        交易所状态
+    </h3>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        {% for exchange in cer_live_exchanges %}
+        {% set ex_data = data.exchanges|selectattr('exchange', 'equalto', exchange)|first %}
+        <a href="{{ url_for('exchange_detail', exchange_name=exchange) }}" 
+           class="card p-4 text-center hover:border-blue-500 transition">
+            <div class="w-8 h-8 rounded-lg {{ get_severity_color(ex_data.alert_level if ex_data else 'none') }} flex items-center justify-center mx-auto mb-2 text-sm font-bold">
+                {{ exchange[0] }}
+            </div>
+            <p class="text-sm font-medium truncate">{{ exchange }}</p>
+            <p class="text-xs text-gray-500 mt-1">
+                {{ ex_data.alert_level|default('none')|upper if ex_data else 'NONE' }}
+            </p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% else %}
+<div class="card text-center py-16">
+    <i class="fas fa-exclamation-circle text-gray-500 text-5xl mb-4"></i>
+    <h3 class="text-xl font-semibold mb-2">未找到数据</h3>
+    <p class="text-gray-400">{{ date }} 暂无简报数据</p>
+</div>
+{% endif %}
+{% endblock %}
