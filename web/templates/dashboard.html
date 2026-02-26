@@ -63,7 +63,7 @@
         <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold flex items-center gap-2">
                 <i class="fas fa-fire text-orange-400"></i>
-                有问题的交易所
+                近期负面舆论和争议较多的交易所
             </h3>
             {% if problematic|length > 0 %}
             <span class="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm">
@@ -155,15 +155,15 @@
 
 <!-- 快捷导航 -->
 <div class="mt-8">
-    <h3 class="text-lg font-semibold mb-4">快速访问</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-        {% for exchange in ['Binance', 'OKX', 'Coinbase Exchange', 'Bybit', 'Bitget', 'Kraken'] %}
+    <h3 class="text-lg font-semibold mb-4">全部交易所快速访问 ({{ cer_live_exchanges|length }}个)</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10 gap-3">
+        {% for exchange in cer_live_exchanges %}
         <a href="{{ url_for('exchange_detail', exchange_name=exchange) }}" 
-           class="card card-hover text-center py-4 block">
-            <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <span class="font-bold text-blue-400">{{ exchange[0] }}</span>
+           class="card card-hover text-center py-3 block">
+            <div class="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <span class="font-bold text-blue-400 text-sm">{{ exchange[0] }}</span>
             </div>
-            <span class="text-sm">{{ exchange }}</span>
+            <span class="text-xs truncate">{{ exchange }}</span>
         </a>
         {% endfor %}
     </div>

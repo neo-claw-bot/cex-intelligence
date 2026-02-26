@@ -24,6 +24,13 @@
             border-right: 1px solid #334155;
             overflow-y: auto;
             z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-menu {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
         }
         .main-content {
             margin-left: var(--sidebar-width);
@@ -56,7 +63,7 @@
             margin-right: 12px;
         }
         .exchange-submenu {
-            max-height: 400px;
+            max-height: calc(100vh - 300px);
             overflow-y: auto;
         }
         .exchange-item {
