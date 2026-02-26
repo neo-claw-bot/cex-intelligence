@@ -16,11 +16,13 @@
       "title": "奥地利FMA因反洗钱及合规人员不足部分禁止KuCoin欧盟运营",
       "description": "据原文报道：奥地利金融市场管理局(FMA)宣布暂停 KuCoin 在欧盟的运营许可。",
       "url": "https://www.coindesk.com/policy/2026/02/23/kucoin-banned-in-europe-over-anti-money-laundering-and-compliance-staff-shortfall",
-      "source_name": "CoinDesk",
       "tags": [
         "news",
         "regulatory"
-      ]
+      ],
+      "source": "CoinDesk",
+      "event_date": "2026-02-24",
+      "discovered_at": "2026-02-24T10:09:11.401443"
     },
     {
       "exchange": "Binance",
@@ -28,11 +30,13 @@
       "title": "币安员工发现17亿美元资金违规发送伊朗并被解雇",
       "description": "据纽约时报报道，币安多名员工发现约17亿美元加密货币被发送至伊朗地址，违反美国制裁规定，随后这些调查员被解雇。内部警告早在去年出现，但公司未及时处理。",
       "url": "https://www.nytimes.com/2026/02/23/technology/binance-employees-iran-firings.html",
-      "source_name": "The New York Times",
       "tags": [
         "news",
         "regulatory"
-      ]
+      ],
+      "source": "The New York Times",
+      "event_date": "2026-02-24",
+      "discovered_at": "2026-02-24T10:09:11.401443"
     }
   ],
   "key_alerts": [
