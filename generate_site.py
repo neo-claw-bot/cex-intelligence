@@ -9,8 +9,8 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 
-# 读取最新数据
-files = sorted(Path('data').glob('*.json'))
+# 读取最新数据（只读取 daily_*.json 文件，排除 test_*.json）
+files = sorted(Path('data').glob('daily_*.json'))
 if not files:
     print('❌ 无数据文件')
     exit(1)
