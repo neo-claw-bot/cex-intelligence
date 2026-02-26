@@ -322,7 +322,9 @@
       "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
         "security"
-      ]
+      ],
+      "category": "dispute_compliance",
+      "subcategory": ""
     },
     {
       "exchange": "MEXC",
@@ -336,7 +338,9 @@
       "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
         "security"
-      ]
+      ],
+      "category": "dispute_compliance",
+      "subcategory": ""
     },
     {
       "exchange": "MEXC",
@@ -350,7 +354,9 @@
       "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
         "security"
-      ]
+      ],
+      "category": "dispute_compliance",
+      "subcategory": ""
     },
     {
       "exchange": "MEXC",
@@ -364,7 +370,9 @@
       "discovered_at": "2026-02-25T16:53:51.915825",
       "tags": [
         "security"
-      ]
+      ],
+      "category": "dispute_compliance",
+      "subcategory": ""
     }
   ]
 }

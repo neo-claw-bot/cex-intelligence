@@ -4,166 +4,284 @@
 {% block header_title %}Dashboard{% endblock %}
 
 {% block content %}
-<!-- 统计卡片 -->
+<!-- 统计卡片 - 按分类展示 -->
 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-    <div class="card card-hover">
+    <div class="card card-hover border-l-4 border-gray-500">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-400">监控交易所</p>
-                <p class="text-3xl font-bold">{{ stats.total_exchanges }}</p>
+                <p class="text-sm text-gray-400">今日情报总数</p>
+                <p class="text-2xl font-bold">{{ stats.total_alerts|default(0) }}</p>
             </div>
-            <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
-                <i class="fas fa-building text-blue-400 text-xl"></i>
+            <div class="w-12 h-12 bg-gray-600/20 rounded-lg flex items-center justify-center">
+                <i class="fas fa-chart-line text-gray-400 text-xl"></i>
             </div>
         </div>
     </div>
     
-    <div class="card card-hover">
+    <div class="card card-hover border-l-4 border-red-500">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-400">有风险交易所</p>
-                <p class="text-3xl font-bold {% if stats.problematic_count > 0 %}text-orange-400{% else %}text-green-400{% endif %}">
-                    {{ stats.problematic_count }}
+                <p class="text-sm text-gray-400">网络攻击事件</p>
+                <p class="text-2xl font-bold text-red-400">
+                    {{ stats.security_attack|default(0) }}
+                </p>
+            </div>
+            <div class="w-12 h-12 bg-red-600/20 rounded-lg flex items-center justify-center">
+                <i class="fas fa-bug text-red-400 text-xl"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card card-hover border-l-4 border-orange-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-400">争议/合规问题</p>
+                <p class="text-2xl font-bold text-orange-400">
+                    {{ stats.dispute_compliance|default(0) }}
                 </p>
             </div>
             <div class="w-12 h-12 bg-orange-600/20 rounded-lg flex items-center justify-center">
-                <i class="fas fa-exclamation-triangle text-orange-400 text-xl"></i>
+                <i class="fas fa-gavel text-orange-400 text-xl"></i>
             </div>
         </div>
     </div>
     
-    <div class="card card-hover">
+    <div class="card card-hover border-l-4 border-yellow-500">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-400">今日警报</p>
-                <p class="text-3xl font-bold">{{ stats.alerts_today }}</p>
+                <p class="text-sm text-gray-400">运营风险</p>
+                <p class="text-2xl font-bold text-yellow-400">
+                    {{ stats.operational_risk|default(0) }}
+                </p>
             </div>
-            <div class="w-12 h-12 bg-red-600/20 rounded-lg flex items-center justify-center">
-                <i class="fas fa-bell text-red-400 text-xl"></i>
-            </div>
-        </div>
-    </div>
-    
-    <div class="card card-hover">
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="text-sm text-gray-400">监控天数</p>
-                <p class="text-3xl font-bold">{{ stats.monitoring_days }}</p>
-            </div>
-            <div class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center">
-                <i class="fas fa-calendar-alt text-green-400 text-xl"></i>
+            <div class="w-12 h-12 bg-yellow-600/20 rounded-lg flex items-center justify-center">
+                <i class="fas fa-exclamation-triangle text-yellow-400 text-xl"></i>
             </div>
         </div>
     </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <!-- 有问题的交易所 -->
+<!-- 三类情报分开展示 -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <!-- 网络攻击事件 -->
     <div>
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-red-500/30">
             <h3 class="text-lg font-semibold flex items-center gap-2">
-                <i class="fas fa-fire text-orange-400"></i>
-                近期负面舆论和争议较多的交易所
+                <i class="fas fa-bug text-red-400"></i>
+                网络攻击事件
             </h3>
-            {% if problematic|length > 0 %}
-            <span class="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm">
-                {{ problematic|length }} 个
+            {% if security_attacks|length > 0 %}
+            <span class="px-3 py-1 bg-red-600/20 text-red-400 rounded-full text-sm font-bold">
+                {{ security_attacks|length }}
             </span>
             {% endif %}
         </div>
         
-        {% if problematic %}
-        <div class="space-y-3">
-            {% for ex in problematic %}
-            <a href="{{ url_for('exchange_detail', exchange_name=ex.name) }}" 
-               class="card card-hover severity-{{ ex.severity }} block">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg {{ get_severity_color(ex.severity) }} flex items-center justify-center font-bold">
-                            {{ ex.name[0] }}
-                        </div>
-                        <div>
-                            <h4 class="font-semibold">{{ ex.name }}</h4>
-                            <p class="text-sm text-gray-400">{{ ex.latest_alert[:50] }}{% if ex.latest_alert|length > 50 %}...{% endif %}</p>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span class="px-2 py-1 rounded text-xs {{ get_severity_color(ex.severity) }}">
-                            {{ get_severity_badge(ex.severity) }}
-                        </span>
-                        <p class="text-xs text-gray-500 mt-1">{{ ex.alert_count }} 个警报</p>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="card text-center py-12">
-            <i class="fas fa-check-circle text-green-400 text-4xl mb-3"></i>
-            <p class="text-gray-400">当前没有有问题的交易所</p>
-            <p class="text-sm text-gray-500 mt-1">所有监控交易所状态正常</p>
-        </div>
-        {% endif %}
-    </div>
-    
-    <!-- 值得关注的情报 -->
-    <div>
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold flex items-center gap-2">
-                <i class="fas fa-eye text-blue-400"></i>
-                值得关注的情报
-            </h3>
-            {% if significant|length > 0 %}
-            <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-sm">
-                {{ significant|length }} 条
-            </span>
-            {% endif %}
-        </div>
-        
-        {% if significant %}
-        <div class="space-y-3">
-            {% for alert in significant %}
+        {% if security_attacks %}
+        <div class="space-y-3 max-h-96 overflow-y-auto pr-2">
+            {% for alert in security_attacks %}
             <a href="{{ url_for('exchange_detail', exchange_name=alert.exchange) }}" 
-               class="card card-hover severity-{{ alert.severity }} block">
-                <div class="flex items-start gap-3">
-                    <span class="px-2 py-1 rounded text-xs {{ get_severity_color(alert.severity) }} flex-shrink-0">
-                        {{ get_severity_badge(alert.severity) }}
+               class="card card-hover block border-l-4 border-red-500 bg-red-900/10">
+                <div class="flex items-start gap-2">
+                    <span class="px-2 py-0.5 rounded text-xs bg-red-600 text-white font-bold flex-shrink-0">
+                        {{ get_severity_badge(alert.severity).split(' ')[0] }}
                     </span>
-                    <div class="flex-1">
+                    <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2 mb-1">
-                            <span class="font-semibold">{{ alert.exchange }}</span>
+                            <span class="font-semibold text-sm">{{ alert.exchange }}</span>
                             <span class="text-xs text-gray-500">{{ alert.date }}</span>
                         </div>
-                        <h4 class="text-sm">{{ alert.title }}</h4>
-                        <p class="text-xs text-gray-400 mt-1">
-                            {{ alert.description[:80] }}{% if alert.description|length > 80 %}...{% endif %}
-                        </p>
+                        <p class="text-sm text-gray-200 truncate">{{ alert.title }}</p>
+                        {% if alert.subcategory %}
+                        <span class="text-xs text-red-400">{{ alert.subcategory }}</span>
+                        {% endif %}
                     </div>
                 </div>
             </a>
             {% endfor %}
         </div>
         {% else %}
-        <div class="card text-center py-12">
-            <i class="fas fa-shield-alt text-blue-400 text-4xl mb-3"></i>
-            <p class="text-gray-400">近期没有值得关注的高风险情报</p>
-            <p class="text-sm text-gray-500 mt-1">市场总体平稳</p>
+        <div class="card text-center py-8 bg-red-900/5">
+            <i class="fas fa-shield-alt text-green-400 text-3xl mb-2"></i>
+            <p class="text-gray-400 text-sm">近期无网络攻击事件</p>
+            <p class="text-xs text-gray-500 mt-1">安全态势良好</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- 争议/合规问题 -->
+    <div>
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-orange-500/30">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+                <i class="fas fa-gavel text-orange-400"></i>
+                争议/合规问题
+            </h3>
+            {% if dispute_compliance|length > 0 %}
+            <span class="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm font-bold">
+                {{ dispute_compliance|length }}
+            </span>
+            {% endif %}
+        </div>
+        
+        {% if dispute_compliance %}
+        <div class="space-y-3 max-h-96 overflow-y-auto pr-2">
+            {% for alert in dispute_compliance %}
+            <a href="{{ url_for('exchange_detail', exchange_name=alert.exchange) }}" 
+               class="card card-hover block border-l-4 border-orange-500 bg-orange-900/10">
+                <div class="flex items-start gap-2">
+                    <span class="px-2 py-0.5 rounded text-xs bg-orange-600 text-white font-bold flex-shrink-0">
+                        {{ get_severity_badge(alert.severity).split(' ')[0] }}
+                    </span>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-semibold text-sm">{{ alert.exchange }}</span>
+                            <span class="text-xs text-gray-500">{{ alert.date }}</span>
+                        </div>
+                        <p class="text-sm text-gray-200 truncate">{{ alert.title }}</p>
+                        {% if alert.subcategory %}
+                        <span class="text-xs text-orange-400">{{ alert.subcategory }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card text-center py-8 bg-orange-900/5">
+            <i class="fas fa-check-circle text-green-400 text-3xl mb-2"></i>
+            <p class="text-gray-400 text-sm">近期无争议/合规问题</p>
+            <p class="text-xs text-gray-500 mt-1">合规状况良好</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- 运营风险 -->
+    <div>
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-yellow-500/30">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+                <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                运营风险
+            </h3>
+            {% if operational_risks|length > 0 %}
+            <span class="px-3 py-1 bg-yellow-600/20 text-yellow-400 rounded-full text-sm font-bold">
+                {{ operational_risks|length }}
+            </span>
+            {% endif %}
+        </div>
+        
+        {% if operational_risks %}
+        <div class="space-y-3 max-h-96 overflow-y-auto pr-2">
+            {% for alert in operational_risks %}
+            <a href="{{ url_for('exchange_detail', exchange_name=alert.exchange) }}" 
+               class="card card-hover block border-l-4 border-yellow-500 bg-yellow-900/10">
+                <div class="flex items-start gap-2">
+                    <span class="px-2 py-0.5 rounded text-xs bg-yellow-600 text-white font-bold flex-shrink-0">
+                        {{ get_severity_badge(alert.severity).split(' ')[0] }}
+                    </span>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-semibold text-sm">{{ alert.exchange }}</span>
+                            <span class="text-xs text-gray-500">{{ alert.date }}</span>
+                        </div>
+                        <p class="text-sm text-gray-200 truncate">{{ alert.title }}</p>
+                        {% if alert.subcategory %}
+                        <span class="text-xs text-yellow-400">{{ alert.subcategory }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card text-center py-8 bg-yellow-900/5">
+            <i class="fas fa-check-circle text-green-400 text-3xl mb-2"></i>
+            <p class="text-gray-400 text-sm">近期无运营风险</p>
+            <p class="text-xs text-gray-500 mt-1">运营状况稳定</p>
         </div>
         {% endif %}
     </div>
 </div>
 
-<!-- 快捷导航 -->
-<div class="mt-8">
-    <h3 class="text-lg font-semibold mb-4">全部交易所快速访问 ({{ cer_live_exchanges|length }}个)</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-10 gap-3">
-        {% for exchange in cer_live_exchanges %}
-        <a href="{{ url_for('exchange_detail', exchange_name=exchange) }}" 
-           class="card card-hover text-center py-3 block">
-            <div class="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <span class="font-bold text-blue-400 text-sm">{{ exchange[0] }}</span>
+<!-- 近期负面舆论和争议较多的交易所 -->
+<div class="mb-8">
+    <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold flex items-center gap-2">
+            <i class="fas fa-fire text-orange-400"></i>
+            近期负面舆论和争议较多的交易所
+        </h3>
+        {% if problematic|length > 0 %}
+        <span class="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm">
+            {{ problematic|length }} 个
+        </span>
+        {% endif %}
+    </div>
+    
+    {% if problematic %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {% for ex in problematic %}
+        <a href="{{ url_for('exchange_detail', exchange_name=ex.name) }}" 
+           class="card card-hover block border-l-4 
+           {% if ex.category == 'security_attack' %}border-red-500 bg-red-900/10
+           {% elif ex.category == 'dispute_compliance' %}border-orange-500 bg-orange-900/10
+           {% elif ex.category == 'operational_risk' %}border-yellow-500 bg-yellow-900/10
+           {% else %}border-gray-500{% endif %}">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg {{ get_severity_color(ex.severity) }} flex items-center justify-center font-bold">
+                        {{ ex.name[0] }}
+                    </div>
+                    <div class="min-w-0">
+                        <h4 class="font-semibold">{{ ex.name }}</h4>
+                        <p class="text-sm text-gray-400 truncate">{{ ex.latest_alert[:30] }}{% if ex.latest_alert|length > 30 %}...{% endif %}</p>
+                    </div>
+                </div>
+                <div class="text-right flex-shrink-0">
+                    <span class="px-2 py-1 rounded text-xs {{ get_severity_color(ex.severity) }}">
+                        {{ ex.alert_count }}
+                    </span>
+                    {% if ex.category %}
+                    <span class="block text-xs mt-1 
+                        {% if ex.category == 'security_attack' %}text-red-400
+                        {% elif ex.category == 'dispute_compliance' %}text-orange-400
+                        {% elif ex.category == 'operational_risk' %}text-yellow-400
+                        {% endif %}">
+                        {% if ex.category == 'security_attack' %}攻击
+                        {% elif ex.category == 'dispute_compliance' %}合规
+                        {% elif ex.category == 'operational_risk' %}运营
+                        {% endif %}
+                    </span>
+                    {% endif %}
+                </div>
             </div>
-            <span class="text-xs truncate">{{ exchange }}</span>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-8">
+        <i class="fas fa-check-circle text-green-400 text-3xl mb-2"></i>
+        <p class="text-gray-400">当前没有近期负面舆论和争议较多的交易所</p>
+        <p class="text-sm text-gray-500 mt-1">市场总体平稳</p>
+    </div>
+    {% endif %}
+</div>
+
+<!-- 全部30个交易所快速访问 -->
+<div>
+    <h3 class="text-lg font-semibold mb-4">全部交易所快速访问 ({{ cer_live_exchanges|length }}个)</h3>
+    <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-2">
+        {% for exchange in cer_live_exchanges %}
+        {% set status = exchange_status.get(exchange, 'none') %}
+        <a href="{{ url_for('exchange_detail', exchange_name=exchange) }}" 
+           class="card card-hover text-center py-2 block
+           {% if status == 'critical' %}border-red-500 bg-red-900/10
+           {% elif status == 'high' %}border-orange-500 bg-orange-900/10
+           {% elif status == 'medium' %}border-yellow-500 bg-yellow-900/10
+           {% elif status == 'low' %}border-blue-500 bg-blue-900/10
+           {% endif %}">
+            <div class="w-6 h-6 rounded bg-gray-700 flex items-center justify-center mx-auto mb-1">
+                <span class="font-bold text-xs">{{ exchange[0] }}</span>
+            </div>
+            <span class="text-xs truncate block">{{ exchange }}</span>
         </a>
         {% endfor %}
     </div>

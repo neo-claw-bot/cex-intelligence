@@ -93,7 +93,7 @@ def get_all_exchange_status():
     return status
 
 def get_problematic_exchanges(days=7):
-    """获取近期负面舆论和争议较多的交易所列表"""
+    """获取近期负面舆论和争议较多的交易所列表（包含分类）"""
     problematic = {}
     dates = get_available_dates()
     
@@ -104,11 +104,13 @@ def get_problematic_exchanges(days=7):
             for alert in data.get('alerts', []):
                 if alert.get('severity') in ['high', 'critical']:
                     ex = alert.get('exchange')
+                    category = alert.get('category', 'dispute_compliance')
                     if ex:
                         if ex not in problematic:
                             problematic[ex] = {
                                 'name': ex,
                                 'severity': alert.get('severity'),
+                                'category': category,
                                 'latest_alert': alert.get('title', ''),
                                 'alert_count': 0,
                                 'latest_date': date_str
@@ -117,6 +119,9 @@ def get_problematic_exchanges(days=7):
                         # 更新最新日期和严重程度
                         if alert.get('severity') == 'critical':
                             problematic[ex]['severity'] = 'critical'
+                        # 优先显示攻击类
+                        if category == 'security_attack':
+                            problematic[ex]['category'] = category
     
     # 转换为列表，按警报数量排序
     result = list(problematic.values())
@@ -192,27 +197,38 @@ def index():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    """Dashboard - 首页，显示有问题交易所和值得关注情报"""
-    # 获取有问题的交易所
+    """Dashboard - 首页，按分类展示情报"""
+    # 获取最近7天的数据
+    dates = get_available_dates()
+    
+    # 分类统计
+    security_attacks = []
+    dispute_compliance = []
+    operational_risks = []
+    
+    for date_str in dates[:7]:
+        data = load_intel(date_str)
+        if data and data.get('alerts'):
+            for alert in data['alerts']:
+                alert['date'] = date_str
+                category = alert.get('category', 'dispute_compliance')
+                if category == 'security_attack':
+                    security_attacks.append(alert)
+                elif category == 'operational_risk':
+                    operational_risks.append(alert)
+                else:
+                    dispute_compliance.append(alert)
+    
+    # 获取有问题的交易所（包含分类信息）
     problematic = get_problematic_exchanges()
-    
-    # 获取值得关注的情报
-    significant = get_significant_alerts(days=7)
-    
-    # 获取今日数据
-    today = datetime.now().strftime("%Y-%m-%d")
-    today_data = load_intel(today)
-    
-    # 如果没有今日数据，尝试昨天
-    if not today_data:
-        yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-        today_data = load_intel(yesterday)
     
     # 统计信息
     stats = {
         'total_exchanges': 30,
-        'problematic_count': len(problematic),
-        'alerts_today': len(today_data.get('alerts', [])) if today_data else 0,
+        'total_alerts': len(security_attacks) + len(dispute_compliance) + len(operational_risks),
+        'security_attack': len(security_attacks),
+        'dispute_compliance': len(dispute_compliance),
+        'operational_risk': len(operational_risks),
         'monitoring_days': len(get_available_dates())
     }
     
@@ -220,9 +236,10 @@ def dashboard():
     exchange_status = get_all_exchange_status()
     
     return render_template("dashboard.html",
+                          security_attacks=security_attacks[:10],
+                          dispute_compliance=dispute_compliance[:10],
+                          operational_risks=operational_risks[:10],
                           problematic=problematic,
-                          significant=significant,
-                          today_data=today_data,
                           stats=stats,
                           cer_live_exchanges=CER_LIVE_EXCHANGES,
                           exchange_status=exchange_status,

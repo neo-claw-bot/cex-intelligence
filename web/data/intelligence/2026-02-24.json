@@ -22,7 +22,9 @@
       ],
       "source": "CoinDesk",
       "event_date": "2026-02-24",
-      "discovered_at": "2026-02-24T10:09:11.401443"
+      "discovered_at": "2026-02-24T10:09:11.401443",
+      "category": "dispute_compliance",
+      "subcategory": ""
     },
     {
       "exchange": "Binance",
@@ -36,7 +38,9 @@
       ],
       "source": "The New York Times",
       "event_date": "2026-02-24",
-      "discovered_at": "2026-02-24T10:09:11.401443"
+      "discovered_at": "2026-02-24T10:09:11.401443",
+      "category": "dispute_compliance",
+      "subcategory": ""
     }
   ],
   "key_alerts": [
