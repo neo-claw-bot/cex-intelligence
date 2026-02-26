@@ -53,25 +53,44 @@ def get_available_dates():
     return dates[:30]
 
 def get_exchange_alerts(exchange_name, days=30):
-    """获取指定交易所的所有历史警报"""
+    """获取指定交易所的所有历史警报（去重）"""
     alerts = []
+    seen_titles = set()  # 用于去重
     dates = get_available_dates()
     
     for date_str in dates[:days]:
         data = load_intel(date_str)
+        # 只从alerts获取，避免与key_alerts重复
         if data and data.get('alerts'):
             for alert in data['alerts']:
                 if alert.get('exchange') == exchange_name:
-                    alert['date'] = date_str
-                    alerts.append(alert)
-        # 同时检查key_alerts
-        if data and data.get('key_alerts'):
-            for alert in data['key_alerts']:
-                if alert.get('exchange') == exchange_name:
-                    alert['date'] = date_str
-                    alerts.append(alert)
+                    title = alert.get('title', '')
+                    # 根据标题去重
+                    if title not in seen_titles:
+                        alert['date'] = date_str
+                        alerts.append(alert)
+                        seen_titles.add(title)
     
     return sorted(alerts, key=lambda x: x.get('date', ''), reverse=True)
+
+def get_exchange_current_status(exchange_name):
+    """获取交易所当前最新状态"""
+    dates = get_available_dates()
+    
+    for date_str in dates[:7]:  # 查最近7天
+        data = load_intel(date_str)
+        if data and data.get('alerts'):
+            for alert in data.get('alerts', []):
+                if alert.get('exchange') == exchange_name:
+                    return alert.get('severity', 'none')
+    return 'none'
+
+def get_all_exchange_status():
+    """获取所有交易所的当前状态"""
+    status = {}
+    for exchange in CER_LIVE_EXCHANGES:
+        status[exchange] = get_exchange_current_status(exchange)
+    return status
 
 def get_problematic_exchanges(days=7):
     """获取近期负面舆论和争议较多的交易所列表"""
@@ -197,12 +216,16 @@ def dashboard():
         'monitoring_days': len(get_available_dates())
     }
     
+    # 获取所有交易所的当前状态
+    exchange_status = get_all_exchange_status()
+    
     return render_template("dashboard.html",
                           problematic=problematic,
                           significant=significant,
                           today_data=today_data,
                           stats=stats,
                           cer_live_exchanges=CER_LIVE_EXCHANGES,
+                          exchange_status=exchange_status,
                           get_severity_color=get_severity_color,
                           get_severity_badge=get_severity_badge)
 
@@ -232,12 +255,16 @@ def exchange_detail(exchange_name):
         'last_alert': alerts[0].get('date') if alerts else None
     }
     
+    # 获取所有交易所的当前状态
+    exchange_status = get_all_exchange_status()
+    
     return render_template("exchange_detail.html",
                           exchange_name=exchange_name,
                           alerts=alerts,
                           current_status=current_status,
                           stats=stats,
                           cer_live_exchanges=CER_LIVE_EXCHANGES,
+                          exchange_status=exchange_status,
                           get_severity_color=get_severity_color,
                           get_severity_badge=get_severity_badge)
 
@@ -253,11 +280,15 @@ def date_view(date_str):
                               message=f"未找到 {date_str} 的数据",
                               dates=dates)
     
+    # 获取所有交易所的当前状态
+    exchange_status = get_all_exchange_status()
+    
     return render_template("date_view.html",
                           data=data,
                           date=date_str,
                           dates=dates,
                           cer_live_exchanges=CER_LIVE_EXCHANGES,
+                          exchange_status=exchange_status,
                           get_severity_color=get_severity_color,
                           get_severity_badge=get_severity_badge)
 
@@ -278,9 +309,13 @@ def alerts_list():
     # 按日期排序
     all_alerts = sorted(all_alerts, key=lambda x: x.get('date', ''), reverse=True)
     
+    # 获取所有交易所的当前状态
+    exchange_status = get_all_exchange_status()
+
     return render_template("alerts.html",
                           alerts=all_alerts,
                           cer_live_exchanges=CER_LIVE_EXCHANGES,
+                          exchange_status=exchange_status,
                           get_severity_color=get_severity_color,
                           get_severity_badge=get_severity_badge)
 
