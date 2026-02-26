@@ -1,5 +1,14 @@
 {
-  "summary": "过去24-48小时内，主要情报聚焦KuCoin和Binance。KuCoin因反洗钱及合规人员不足，被奥地利金融市场管理局（FMA）部分禁止欧盟运营，属于监管行动。Binance有报道称员工发现17亿美元加密货币违规发送至伊朗，随后被解雇，引发制裁违规担忧。其他交易所如OKX、Coinbase、Bybit、Bitget、Kraken无重大安全事件、服务中断或用户投诉报告，仅有常规公告。",
+  "date": "2026-02-24",
+  "timestamp": "2026-02-24T10:09:11.401443",
+  "collected_at": "2026-02-24T10:09:11.401443",
+  "discovered_at": "2026-02-24T10:09:11.401443",
+  "summary": {
+    "total_exchanges": 30,
+    "alerted_exchanges": 2,
+    "critical_alerts": 0,
+    "high_alerts": 2
+  },
   "alerts": [
     {
       "exchange": "KuCoin",
@@ -26,56 +35,31 @@
       ]
     }
   ],
-  "exchange_status": {
-    "Binance": {
-      "status": "warning",
-      "notes": "伊朗制裁违规报道，可能面临进一步监管审查",
-      "url": "https://www.nytimes.com/2026/02/23/technology/binance-employees-iran-firings.html"
-    },
-    "OKX": {
-      "status": "normal",
-      "notes": "无重大事件报告",
-      "url": ""
-    },
-    "Coinbase": {
-      "status": "normal",
-      "notes": "无重大事件报告",
-      "url": ""
-    },
-    "Bybit": {
-      "status": "normal",
-      "notes": "无重大事件报告",
-      "url": ""
-    },
-    "Bitget": {
-      "status": "normal",
-      "notes": "无重大事件报告",
-      "url": ""
-    },
-    "Kraken": {
-      "status": "normal",
-      "notes": "无重大事件报告",
-      "url": ""
-    },
-    "KuCoin": {
-      "status": "warning",
-      "notes": "欧盟部分运营被奥地利FMA禁止，因AML及合规问题",
-      "url": "https://www.coindesk.com/policy/2026/02/23/kucoin-banned-in-europe-over-anti-money-laundering-and-compliance-staff-shortfall"
-    }
-  },
-  "fintelegram_highlights": [],
-  "sources": [
+  "key_alerts": [
     {
-      "name": "CoinDesk",
+      "exchange": "KuCoin",
+      "severity": "high",
+      "title": "奥地利FMA因反洗钱及合规人员不足部分禁止KuCoin欧盟运营",
+      "description": "据原文报道：奥地利金融市场管理局(FMA)宣布暂停 KuCoin 在欧盟的运营许可。",
       "url": "https://www.coindesk.com/policy/2026/02/23/kucoin-banned-in-europe-over-anti-money-laundering-and-compliance-staff-shortfall",
-      "type": "news"
+      "source_name": "CoinDesk",
+      "tags": [
+        "news",
+        "regulatory"
+      ]
     },
     {
-      "name": "The New York Times",
+      "exchange": "Binance",
+      "severity": "high",
+      "title": "币安员工发现17亿美元资金违规发送伊朗并被解雇",
+      "description": "据纽约时报报道，币安多名员工发现约17亿美元加密货币被发送至伊朗地址，违反美国制裁规定，随后这些调查员被解雇。内部警告早在去年出现，但公司未及时处理。",
       "url": "https://www.nytimes.com/2026/02/23/technology/binance-employees-iran-firings.html",
-      "type": "news"
+      "source_name": "The New York Times",
+      "tags": [
+        "news",
+        "regulatory"
+      ]
     }
   ],
-  "date": "2026-02-24",
-  "collected_at": "2026-02-24T10:09:11.401443"
+  "exchanges": []
 }
