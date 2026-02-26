@@ -41,12 +41,15 @@ def load_intel(date_str):
     return None
 
 def get_available_dates():
-    """获取可用的日期列表"""
+    """获取可用的日期列表（按时间倒序，最新的在前）"""
     dates = []
     if DATA_DIR.exists():
-        for f in sorted(DATA_DIR.glob("*.json"), reverse=True):
-            if f.stem not in ['historical-2025', 'historical-2025-detailed']:
-                dates.append(f.stem)
+        # 获取所有json文件，排除历史数据文件
+        json_files = [f for f in DATA_DIR.glob("*.json") 
+                      if f.stem not in ['historical-2025', 'historical-2025-detailed']]
+        # 按文件名倒序（日期格式YYYY-MM-DD可以直接字符串排序）
+        for f in sorted(json_files, reverse=True):
+            dates.append(f.stem)
     return dates[:30]
 
 def get_exchange_alerts(exchange_name, days=30):
@@ -70,30 +73,37 @@ def get_exchange_alerts(exchange_name, days=30):
     
     return sorted(alerts, key=lambda x: x.get('date', ''), reverse=True)
 
-def get_problematic_exchanges():
-    """获取当前有问题的交易所列表"""
-    problematic = []
-    today = datetime.now().strftime("%Y-%m-%d")
-    data = load_intel(today)
+def get_problematic_exchanges(days=7):
+    """获取近期负面舆论和争议较多的交易所列表"""
+    problematic = {}
+    dates = get_available_dates()
     
-    if not data:
-        # 尝试昨天
-        yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-        data = load_intel(yesterday)
+    # 统计最近N天内各交易所的高/严重风险警报
+    for date_str in dates[:days]:
+        data = load_intel(date_str)
+        if data and data.get('alerts'):
+            for alert in data.get('alerts', []):
+                if alert.get('severity') in ['high', 'critical']:
+                    ex = alert.get('exchange')
+                    if ex:
+                        if ex not in problematic:
+                            problematic[ex] = {
+                                'name': ex,
+                                'severity': alert.get('severity'),
+                                'latest_alert': alert.get('title', ''),
+                                'alert_count': 0,
+                                'latest_date': date_str
+                            }
+                        problematic[ex]['alert_count'] += 1
+                        # 更新最新日期和严重程度
+                        if alert.get('severity') == 'critical':
+                            problematic[ex]['severity'] = 'critical'
     
-    if data:
-        for alert in data.get('alerts', []):
-            if alert.get('severity') in ['high', 'critical']:
-                ex = alert.get('exchange')
-                if ex and ex not in [p['name'] for p in problematic]:
-                    problematic.append({
-                        'name': ex,
-                        'severity': alert.get('severity'),
-                        'latest_alert': alert.get('title', ''),
-                        'alert_count': len([a for a in data.get('alerts', []) if a.get('exchange') == ex])
-                    })
+    # 转换为列表，按警报数量排序
+    result = list(problematic.values())
+    result.sort(key=lambda x: (-x['alert_count'], x['latest_date']), reverse=False)
     
-    return problematic
+    return result
 
 def get_significant_alerts(days=7):
     """获取值得关注的情报（高/严重风险）"""
