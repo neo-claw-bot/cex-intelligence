@@ -223,9 +223,11 @@ def dashboard():
     problematic = get_problematic_exchanges()
     
     # 统计信息
+    all_alerts = security_attacks + dispute_compliance + operational_risks
     stats = {
         'total_exchanges': 30,
-        'total_alerts': len(security_attacks) + len(dispute_compliance) + len(operational_risks),
+        'total_alerts': len(all_alerts),
+        'alerted_exchanges': len(set(a.get('exchange') for a in all_alerts)),
         'security_attack': len(security_attacks),
         'dispute_compliance': len(dispute_compliance),
         'operational_risk': len(operational_risks),
@@ -235,6 +237,30 @@ def dashboard():
     # 获取所有交易所的当前状态
     exchange_status = get_all_exchange_status()
     
+    # 准备今日简报数据
+    today_date = datetime.now().strftime("%Y-%m-%d")
+    today_time = datetime.now().strftime("%H:%M")
+    
+    # 获取今日重点事件（高/严重风险）
+    today_highlights = []
+    for alert in security_attacks + dispute_compliance + operational_risks:
+        if alert.get('severity') in ['high', 'critical']:
+            today_highlights.append(alert)
+    today_highlights = sorted(today_highlights, key=lambda x: x.get('date', ''), reverse=True)[:5]
+    
+    # 生成今日简报摘要
+    if stats['total_alerts'] == 0:
+        today_summary = f"今日监控 {stats['total_exchanges']} 个交易所，未发现重大风险事件，市场总体平稳。"
+    else:
+        parts = []
+        if stats['security_attack'] > 0:
+            parts.append(f"网络攻击事件 {stats['security_attack']} 条")
+        if stats['dispute_compliance'] > 0:
+            parts.append(f"合规争议问题 {stats['dispute_compliance']} 条")
+        if stats['operational_risk'] > 0:
+            parts.append(f"运营风险事件 {stats['operational_risk']} 条")
+        today_summary = f"今日监控 {stats['total_exchanges']} 个交易所，发现 {stats['total_alerts']} 条情报，其中" + "、".join(parts) + "。"
+    
     return render_template("dashboard.html",
                           security_attacks=security_attacks[:10],
                           dispute_compliance=dispute_compliance[:10],
@@ -243,6 +269,10 @@ def dashboard():
                           stats=stats,
                           cer_live_exchanges=CER_LIVE_EXCHANGES,
                           exchange_status=exchange_status,
+                          today_date=today_date,
+                          today_time=today_time,
+                          today_summary=today_summary,
+                          today_highlights=today_highlights,
                           get_severity_color=get_severity_color,
                           get_severity_badge=get_severity_badge)
 
