@@ -1,43 +1,16 @@
-🎯 CEX 每日简报 - 2026-02-26
+🎯 CEX 每日简报 - 2026-02-28
 
 📊 今日概况
 • 监控交易所: 30 个
-• 风险状况: ✅ 全部正常
-• Critical: 0 | High: 0
+• 风险交易所: 0 个
+• 总情报数: 0 条
+
+📈 分类统计
+• 🔴 网络攻击事件: 0 条
+• 🟠 合规争议问题: 0 条
+• 🟡 运营风险事件: 0 条
 
 ✅ 今日无重大风险事件
 
-🏛️ 交易所状态
-• Binance: NONE (X:0 新闻:0)
-• MEXC: NONE (X:0 新闻:0)
-• Gate: NONE (X:0 新闻:0)
-• Bitget: NONE (X:0 新闻:0)
-• OKX: NONE (X:0 新闻:0)
-• HTX: NONE (X:0 新闻:0)
-• Bybit: NONE (X:0 新闻:0)
-• Coinbase Exchange: NONE (X:0 新闻:0)
-• CoinW: NONE (X:0 新闻:0)
-• BitMart: NONE (X:0 新闻:0)
-• Crypto.com: NONE (X:0 新闻:0)
-• DigiFinex: NONE (X:0 新闻:0)
-• LBank: NONE (X:0 新闻:0)
-• Upbit: NONE (X:0 新闻:0)
-• Toobit: NONE (X:0 新闻:0)
-• WEEX: NONE (X:0 新闻:0)
-• P2B: NONE (X:0 新闻:0)
-• XT.COM: NONE (X:0 新闻:0)
-• Tapbit: NONE (X:0 新闻:0)
-• Kraken: NONE (X:0 新闻:0)
-• KuCoin: NONE (X:0 新闻:0)
-• Bumba: NONE (X:0 新闻:0)
-• WhiteBIT: NONE (X:0 新闻:0)
-• Deribit: NONE (X:0 新闻:0)
-• OFZA: NONE (X:0 新闻:0)
-• Flipster: NONE (X:0 新闻:0)
-• BingX: NONE (X:0 新闻:0)
-• HashKey Exchange: NONE (X:0 新闻:0)
-• Nami.Exchange: NONE (X:0 新闻:0)
-• Bitstamp: NONE (X:0 新闻:0)
-
-⏰ 生成时间: 2026-02-26T10:25:10.318746
+⏰ 生成时间: 2026-02-28T01:08:25.918454
 🔗 详细报告: https://cex-intelligence-production.up.railway.app
