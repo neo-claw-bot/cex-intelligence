@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-02-27T01:15:59.167603",
+  "model": "grok-4-1-fast-reasoning",
+  "focus": "all",
+  "total_alerts": 0,
+  "exchanges_monitored": 30,
+  "categories": {
+    "security_attack": {
+      "count": 0,
+      "alerts": []
+    },
+    "dispute_compliance": {
+      "count": 0,
+      "alerts": []
+    },
+    "operational_risk": {
+      "count": 0,
+      "alerts": []
+    }
+  },
+  "all_alerts": []
+}

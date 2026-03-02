@@ -1,15 +1,9 @@
 {
-  "date": "2026-03-03",
   "timestamp": "2026-03-03T09:00:00+08:00",
-  "collected_at": "2026-03-03T09:00:00+08:00",
-  "discovered_at": "2026-03-03T01:11:01.272744",
-  "summary": {
-    "total_exchanges": 30,
-    "total_alerts": 2,
-    "alerted_exchanges": 1,
-    "critical_alerts": 0,
-    "high_alerts": 1
-  },
+  "model": "grok-4-1-fast-reasoning",
+  "focus": "all",
+  "total_alerts": 2,
+  "exchanges_monitored": 30,
   "categories": {
     "security_attack": {
       "count": 0,
@@ -49,7 +43,7 @@
       "alerts": []
     }
   },
-  "alerts": [
+  "all_alerts": [
     {
       "exchange": "MEXC",
       "category": "dispute_compliance",
@@ -74,32 +68,5 @@
       "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
       "discovered_at": "2026-03-03T09:00:00"
     }
-  ],
-  "key_alerts": [
-    {
-      "exchange": "MEXC",
-      "category": "dispute_compliance",
-      "subcategory": "regulatory_action",
-      "severity": "high",
-      "title": "FinTelegram持续追踪MEXC争议",
-      "description": "FinTelegram发布多篇调查报告，涉及用户资产冻结、影子支付通道、牌照吊销等历史事件",
-      "event_date": "2024-06",
-      "source": "FinTelegram",
-      "url": "https://fintelegram.com/finance-crime-scene-mexc-a-160k-account-block-a-pre-trial-claim-and-an-osint-trail",
-      "discovered_at": "2026-03-03T09:00:00"
-    },
-    {
-      "exchange": "MEXC",
-      "category": "dispute_compliance",
-      "subcategory": "fintelegram_report",
-      "severity": "medium",
-      "title": "爱沙尼亚牌照吊销记录",
-      "description": "FinTelegram报道：爱沙尼亚金融情报局于2023年11月吊销MEXC Estonia OÜ运营牌照",
-      "event_date": "2023-11",
-      "source": "FinTelegram",
-      "url": "https://fintelegram.com/license-revoked-urgent-warning-against-crypto-exchange-mexc-and-its-possible-collapse",
-      "discovered_at": "2026-03-03T09:00:00"
-    }
-  ],
-  "exchanges": []
+  ]
 }
