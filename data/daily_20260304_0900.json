@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-03-04T09:00:00+08:00",
+  "model": "manual-collection",
+  "focus": "all",
+  "total_alerts": 0,
+  "exchanges_monitored": 30,
+  "note": "Grok API额度已用尽，使用备用方案采集",
+  "categories": {
+    "security_attack": {
+      "count": 0,
+      "alerts": []
+    },
+    "dispute_compliance": {
+      "count": 0,
+      "alerts": []
+    },
+    "operational_risk": {
+      "count": 0,
+      "alerts": []
+    }
+  },
+  "all_alerts": []
+}
